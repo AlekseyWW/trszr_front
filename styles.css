@@ -1,0 +1,45 @@
+
+@font-face {
+  font-family: 'Muller';
+  src: local('Muller Black'), local('Muller-Black'),
+      url('./assets/fonts/MullerBlack.woff2') format('woff2'),
+      url('./assets/fonts/MullerBlack.woff') format('woff'),
+      url('./assets/fonts/MullerBlack.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+* {
+  --yellow: #FFE711;
+  --green: #166C00;
+  --gray: #f2f2f2;
+}
+
+html,
+body {
+  min-width: 100%;
+  padding: 0;
+  margin: 0;
+  color: var(--green);
+  background: var(--yellow);
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+  color: currentColor;
+}

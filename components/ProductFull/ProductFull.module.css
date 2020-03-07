@@ -1,0 +1,11 @@
+.product {
+    display: flex;
+}
+
+.view {
+    flex: 3
+}
+.info {
+    flex: 2;
+    padding-left: 32px;
+}

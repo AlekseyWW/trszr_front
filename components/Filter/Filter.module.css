@@ -1,0 +1,39 @@
+.filter {
+    width: 100%;
+}
+.line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+    width: 100%;
+}
+.line_gray {
+    background-color: var(--gray);
+}
+.line:last-child {
+    margin-bottom: 0;
+}
+
+.item {
+    padding: 0 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.item_line {
+    padding: 20px 6px;
+}
+.image {
+    border-radius: 50%;
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 12px;
+}
+.title {
+    line-height: 1;
+}
+.title_line {
+    font-size: 20px;
+}

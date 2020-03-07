@@ -1,0 +1,18 @@
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 60px;
+    padding-top: 50px;
+}
+
+.more {
+    background-color: var(--yellow);
+    text-align: center;
+    padding: 10px 8px;
+    font-size: 18px;
+    font-family: Muller;
+    margin-top: 32px;
+    text-transform: uppercase;
+}
