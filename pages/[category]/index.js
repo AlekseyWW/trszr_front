@@ -118,7 +118,7 @@ const Home = () => (
       <Filter {...{ pictured, lines }} />
       <div className={css.grid}>
         {products.map((product, id) => (
-          <ProductCard {...product} />
+          <ProductCard key={`prod-${id}`} {...product} />
         ))}
       </div>
       <div className={css.more}>Показать ещё</div>

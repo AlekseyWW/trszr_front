@@ -18,7 +18,7 @@ const Home = () => (
         {
           image: "../images/fertilizer.jpg",
           title: "Удобрения",
-          slug: "ydobrenia",
+          slug: "/ydobrenia",
           Icon: Fertilizer
         },
         {

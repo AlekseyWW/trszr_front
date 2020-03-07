@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from './MainCategory.module.css';
 
 const MainCategory = ({ image, title, slug, Icon }) => (
-  <Link href={`/${slug}`} >
+  <Link href="/[category]" as={slug}>
     <a className={styles.item}>
       <span className={styles.inner}>
         <span

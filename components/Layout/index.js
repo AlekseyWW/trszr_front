@@ -45,19 +45,19 @@ const Layout = ({ children, title }) => {
           ) : (
             <>
               <div className={css.categories}>
-                <Link href="/cat">
+                <Link href="/[category]" as="/ddddd">
                   <div className={css.categories__item}>
                     <span> Удобрения </span>
                     <Fertilizer />
                   </div>
                 </Link>
-                <Link href="/cat">
+                <Link href="/[category]" as="/ddddd">
                   <div className={css.categories__item}>
                     <span> Защита растений </span>
                     <Protect />
                   </div>
                 </Link>
-                <Link href="/cat">
+                <Link href="/[category]" as="/ddddd">
                   <div className={css.categories__item}>
                     <span> Семена </span>
                     <Seed />
