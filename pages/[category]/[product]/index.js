@@ -1,17 +1,29 @@
 import Layout from "../../../components/Layout";
 import ProductFull from "../../../components/ProductFull";
 import Container from "../../../components/Container";
+import Axios from "axios";
 
-const product = {
-  title: "АГРИТОКС",
-  image: "/images/product.png",
-  description:
-    "Предназначен для защиты садов и виноградников, также он прекрасно работает и в качестве партнера в баковых смесях с гербицидами, фунгицидами, инсектицидами и удобрениями на всех других культурах."
-};
-const Product = () => <Layout title="Точка роста">
+
+const Product = ({ categories, product }) => (
+  <Layout categories={categories} title="Точка роста">
     <Container>
-        <ProductFull {...product} />
+      <ProductFull {...product} />
     </Container>
-</Layout>;
+  </Layout>
+);
+
+Product.getInitialProps = async ({ query }) => {
+  const { product, categories, cultures } = query;
+  // const { data } = await Axios.get(
+  //   `http://trszr.ru.test/api/categories?${queryString.stringify(query)}`
+  // );
+  const url = `http://trszr.ru.test/api/products/${product}`
+  const { data: {data} } = await Axios.get(url);
+  console.log({ data });
+  
+  return {
+    product: data,
+  };
+};
 
 export default Product;

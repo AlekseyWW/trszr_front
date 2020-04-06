@@ -8,6 +8,15 @@
   font-weight: 900;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Muller';
+  src: local('Muller Medium'), local('Muller-Medium'),
+      url('./assets/fonts/MullerMedium.woff2') format('woff2'),
+      url('./assets/fonts/MullerMedium.woff') format('woff'),
+      url('./assets/fonts/MullerMedium.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
 
 * {
   --yellow: #FFE711;
@@ -22,7 +31,8 @@ body {
   margin: 0;
   color: var(--green);
   background: var(--yellow);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-weight: 700;
+  font-family: Muller, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 * {

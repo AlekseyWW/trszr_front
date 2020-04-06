@@ -1,0 +1,74 @@
+.root {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    min-height: 80px;
+    background-color: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.root div {
+    /* flex: 1; */
+}
+.icon {
+    text-align: center;
+    width: 42px;
+    height: auto;
+    margin-left: 17px;
+    fill: var(--green);
+}
+.logo {
+    text-align: right;
+}
+.categories {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+.categories + .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 90px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.categories__item {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 900;
+    max-width: 420px;
+    text-transform: uppercase;
+    font-family: Muller;
+    background-color: var(--yellow);
+    cursor: pointer;
+
+}
+.categories__item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 20px;
+    background-color: var(--green);
+}
+.categories__item_active {
+    height: 120px;
+}
+.categories__item_active::before {
+    width: 220px;
+    height: 4px;
+}

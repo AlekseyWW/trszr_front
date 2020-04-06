@@ -1,19 +1,18 @@
+import { useState } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
-
-import Fertilizer from "../../assets/fertilizer.svg";
-import Protect from "../../assets/protect.svg";
-import Seed from "../../assets/seed.svg";
-
-import Logo from "../../assets/logo.svg";
-import Icon from "../../assets/icon.svg";
 import css from './Layout.module.css';
+import Header from "../Header";
+import Menu from "../Menu";
 
-const Layout = ({ children, title }) => {
+const Layout = ({ children, title, categories }) => {
   const router = useRouter();
-  console.log({ router });
-  const isHomePage = router.pathname === '/';
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isHomePage = router.pathname === "/";
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  }
   return (
     <div className={css.container}>
       <Head>
@@ -21,60 +20,17 @@ const Layout = ({ children, title }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className={css.header}>
-          <div>
-            <div className={css.hamburger}>
-              <i className={css.hamburger__item}></i>
-              <i className={css.hamburger__item}></i>
-              <i className={css.hamburger__item}></i>
-            </div>
-          </div>
-          {isHomePage ? (
-            <>
-              <div className={css.icon}>
-                <Icon />
-              </div>
-              <div className={css.logo}>
-                <Link href="/">
-                  <a>
-                    <Logo />
-                  </a>
-                </Link>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className={css.categories}>
-                <Link href="/[category]" as="/ddddd">
-                  <div className={css.categories__item}>
-                    <span> Удобрения </span>
-                    <Fertilizer />
-                  </div>
-                </Link>
-                <Link href="/[category]" as="/ddddd">
-                  <div className={css.categories__item}>
-                    <span> Защита растений </span>
-                    <Protect />
-                  </div>
-                </Link>
-                <Link href="/[category]" as="/ddddd">
-                  <div className={css.categories__item}>
-                    <span> Семена </span>
-                    <Seed />
-                  </div>
-                </Link>
-              </div>
-              <div className={css.icon}>
-                <Icon />
-              </div>
-            </>
-          )}
-        </div>
+        <Header
+          isHomePage={isHomePage}
+          toggleMenu={toggleMenu}
+          categories={categories}
+        />
         {children}
       </main>
+      <Menu in={isMenuOpen} toggleMenu={toggleMenu} />
       <footer></footer>
     </div>
   );
-}
+};
 
 export default Layout;

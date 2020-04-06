@@ -1,17 +1,23 @@
 import Link from "next/link";
 import styles from './MainCategory.module.css';
+import Icon from "../Icon";
 
-const MainCategory = ({ image, title, slug, Icon }) => (
+export function camelize(str) {
+  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+    return index === 0 ? word.toLowerCase() : word.toUpperCase();
+  }).replace(/\s+/g, '').replace('-', '');
+}
+const MainCategory = ({ image, name, slug, icon }) => (
   <Link href="/[category]" as={slug}>
     <a className={styles.item}>
       <span className={styles.inner}>
         <span
           className={styles.image}
-          style={{ backgroundImage: `url("${image}")` }}
+          style={{ backgroundImage: `url("http://trszr.ru.test/${image}")` }}
         >
-          {Icon && <Icon className={styles.icon} />}
+          {slug && <Icon name={camelize(slug)} className={styles.icon} />}
         </span>
-        <span className={styles.title}>{title}</span>
+        <span className={styles.title}>{name}</span>
       </span>
     </a>
   </Link>

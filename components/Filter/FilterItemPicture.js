@@ -1,10 +1,19 @@
 import css from "./Filter.module.css";
+import Link from "next/link";
+import cx from "classnames";
 
-const FilterItemPicture = ({ title, image }) => (
-  <div className={css.item}>
-    <img className={css.image} src={image} />
-    <span className={css.title}>{title}</span>
-  </div>
+
+const FilterItemPicture = ({ name, image, id, onChange, type, isActive }) => (
+  <button
+    onClick={onChange}
+    type="button"
+    value={id}
+    name={type}
+    className={cx(css.item, { [css.item_active]: isActive })}
+  >
+    <img className={css.image} src={`http://trszr.ru.test/storage/${image}`} />
+    <span className={css.title}>{name}</span>
+  </button>
 );
 
 export default FilterItemPicture;

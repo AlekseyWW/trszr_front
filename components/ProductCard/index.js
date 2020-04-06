@@ -2,13 +2,15 @@ import Link from "next/link";
 
 import css from './ProductCard.module.css';
 
-const ProductCard = ({ title, image, slug }) => (
-  <Link href="/[category]/[product]" as={slug}>
+const ProductCard = ({ name, image, slug, category }) => (
+  <Link href="/[category]/[product]" as={`${category}/${slug}`}>
     <a className={css.card}>
-      <img className={css.image} src={image} />
-      <span className={css.title}>
-        <span className={css.black}>{title.split(",")[0]}</span>
-        <span>{title.split(",")[1]}</span>
+      <img className={css.image} src={`http://trszr.ru.test/${image}`} />
+      <span className={css.name}>
+        <span className={css.black}>{name.split(",")[0]}</span>
+        <span>
+          {name.split(",")[1]}
+        </span>
       </span>
     </a>
   </Link>

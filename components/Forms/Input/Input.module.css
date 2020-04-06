@@ -1,0 +1,41 @@
+
+.input {
+    position: relative;
+    font-size: 24px;
+}
+.input::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--green);
+}
+.field {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 24px;
+    outline: none;
+    color: var(--green);
+    line-height: 1.5;
+
+}
+.label {
+    opacity: 0.9;
+    font-size: 24px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    outline: none;
+    transition: transform 175ms ease-in-out;
+    transform-origin:  0 100%;
+    line-height: 1.5;
+}
+
+.value + .label, .field:focus + .label {
+    transform: translateY(-90%) scale(0.7);
+}

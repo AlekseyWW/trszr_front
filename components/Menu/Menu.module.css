@@ -1,0 +1,64 @@
+.root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100vh;
+    z-index: 100;
+    transition: transform 300ms, opacity 300ms ease-in-out;
+    opacity: 0;
+    transform: translateX(-100%);
+    box-shadow: 0 10px 19px #000;
+}
+
+.inner {
+    background-color: #fff;
+    padding: 32px;
+    padding-top: 80px;
+    width: 100%;
+    height: 100%;
+}
+
+.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.close i {
+    width: 36px;
+    height: 3px;
+    background-color: var(--green);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -1px;
+    margin-left: -18px;
+    transform: rotate(-45deg);
+}
+.close i:first-child {
+    transform: rotate(45deg);
+}
+
+.entering {
+    opacity: 1;
+    transform: translateX(0)
+}
+.entered {
+    opacity: 1;
+    transform: translateX(0)
+}
+.exiting {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+.exited {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
