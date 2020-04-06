@@ -1,6 +1,6 @@
 import { Transition } from 'react-transition-group';
 import css from './Menu.module.css';
-import cx from 'classNames';
+import cx from 'classnames';
 import SearchForm from '../Forms/SearchForm';
 const duration = 300;
 
