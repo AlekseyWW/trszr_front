@@ -41,7 +41,7 @@ const Header = ({ isHomePage, categories, toggleMenu }) => (
             <Link
               key={slug}
               href="/[category]"
-              as={slug}
+              as={'/'+ slug}
               activeClassName={css.categories__item_active}
             >
               <div className={css.categories__item}>

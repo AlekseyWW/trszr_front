@@ -17,7 +17,7 @@ Product.getInitialProps = async ({ query }) => {
   // const { data } = await Axios.get(
   //   `http://trszr.ru.test/api/categories?${queryString.stringify(query)}`
   // );
-  const url = `http://trszr.ru.test/api/products/${product}`
+  const url = `${process.env.api}/products/${product}`;
   const { data: {data} } = await Axios.get(url);
   console.log({ data });
   

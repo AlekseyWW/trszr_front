@@ -82,7 +82,7 @@ const Category = ({ categories, cultures, cats, prods }) => {
 
   const fetchMoreProducts = async () => {
       const { data } = await Axios.get(
-        `http://trszr.ru.test/api/products?${router.query}&page=${currentPage + 1}`
+        `${process.env.api}/products?${router.query}&page=${currentPage + 1}`
       );
       setProducts([...products, ...data.data]);
       setCurrentPage(data.meta.current_page);
@@ -90,7 +90,7 @@ const Category = ({ categories, cultures, cats, prods }) => {
 
   useEffect(() => {
     Axios.get(
-      `http://trszr.ru.test/api/products?${queryString.stringify(router.query)}`
+      `${process.env.api}/products?${queryString.stringify(router.query)}`
     ).then(res => {
       const { data } = res;
       setProducts(data.data);
@@ -115,9 +115,9 @@ const Category = ({ categories, cultures, cats, prods }) => {
 
 Category.getInitialProps = async({query}) => {
   const { category: slug, categories, cultures } = query;
-  const { data } = await Axios.get( `http://trszr.ru.test/api/categories?${queryString.stringify(query)}` );
+  const { data } = await Axios.get( `${process.env.api}/categories?${queryString.stringify(query)}` );
   const { data: products } = await Axios.get(
-    `http://trszr.ru.test/api/products?${queryString.stringify(query)}`
+    `${process.env.api}/products?${queryString.stringify(query)}`
   );
   
   return {

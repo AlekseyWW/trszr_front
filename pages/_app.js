@@ -4,6 +4,9 @@ import '../styles.css';
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps, globalProps }) {
+    console.log({ api: process.env.api });
+    console.log({ api: process.env.prdod });
+    
     return <Component {...pageProps}  {...globalProps} />;
 }
 
@@ -11,9 +14,9 @@ MyApp.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`;
     const appProps = await App.getInitialProps(appContext);
     const { data: categories } = await Axios.get(
-        "http://trszr.ru.test/api/categories?main=true" 
+        `${process.env.api}/categories?main=true`
     );
-    const { data: cultures } = await Axios.get("http://trszr.ru.test/api/cultures");
+    const { data: cultures } = await Axios.get(`${process.env.api}/cultures`);
     
     return {
         ...appProps,
