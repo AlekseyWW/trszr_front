@@ -82,7 +82,7 @@ const Category = ({ categories, cultures, cats, prods }) => {
 
   const fetchMoreProducts = async () => {
       const { data } = await Axios.get(
-        `${process.env.api}/products?${router.query}&page=${currentPage + 1}`
+        `${process.env.api}/api/products?${router.query}&page=${currentPage + 1}`
       );
       setProducts([...products, ...data.data]);
       setCurrentPage(data.meta.current_page);
@@ -90,7 +90,7 @@ const Category = ({ categories, cultures, cats, prods }) => {
 
   useEffect(() => {
     Axios.get(
-      `${process.env.api}/products?${queryString.stringify(router.query)}`
+      `${process.env.api}/api/products?${queryString.stringify(router.query)}`
     ).then(res => {
       const { data } = res;
       setProducts(data.data);
@@ -115,9 +115,9 @@ const Category = ({ categories, cultures, cats, prods }) => {
 
 Category.getInitialProps = async({query}) => {
   const { category: slug, categories, cultures } = query;
-  const { data } = await Axios.get( `${process.env.api}/categories?${queryString.stringify(query)}` );
+  const { data } = await Axios.get( `${process.env.api}/api/categories?${queryString.stringify(query)}` );
   const { data: products } = await Axios.get(
-    `${process.env.api}/products?${queryString.stringify(query)}`
+    `${process.env.api}/api/products?${queryString.stringify(query)}`
   );
   
   return {

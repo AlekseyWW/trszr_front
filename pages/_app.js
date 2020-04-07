@@ -14,9 +14,9 @@ MyApp.getInitialProps = async (appContext) => {
   // calls page's `getInitialProps` and fills `appProps.pageProps`;
     const appProps = await App.getInitialProps(appContext);
     const { data: categories } = await Axios.get(
-        `${process.env.api}/categories?main=true`
+        `${process.env.api}/api/categories?main=true`
     );
-    const { data: cultures } = await Axios.get(`${process.env.api}/cultures`);
+    const { data: cultures } = await Axios.get(`${process.env.api}/api/cultures`);
     
     return {
         ...appProps,

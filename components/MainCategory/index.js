@@ -13,7 +13,7 @@ const MainCategory = ({ image, name, slug, icon }) => (
       <span className={styles.inner}>
         <span
           className={styles.image}
-          style={{ backgroundImage: `url("http://trszr.ru.test/${image}")` }}
+          style={{ backgroundImage: `url("${process.env.api}/${image}")` }}
         >
           {slug && <Icon name={camelize(slug)} className={styles.icon} />}
         </span>
