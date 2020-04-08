@@ -1,4 +1,5 @@
 import css from './ProductFull.module.css';
+import Button from '../Button';
 
 const ProductFull = ({ name, image, description, ...props }) => {
   console.log({ props});
@@ -17,21 +18,26 @@ const ProductFull = ({ name, image, description, ...props }) => {
           <h3>Состав: </h3>
           <p>{props.consist}</p>
         </div>
-        <div className={css.block}>
-          <h3>Фасовка: </h3>
-          <p>{props.packing}</p>
+        <div className={css.group}>
+          <div className={css.block}>
+            <h3>Категория: </h3>
+            <p>{props.category}</p>
+          </div>
+          <div className={css.block}>
+            <h3>Производитель: </h3>
+            <p>{props.manufacturer}</p>
+          </div>
+          <div className={css.block}>
+            <h3>Фасовка: </h3>
+            <p>{props.packing}</p>
+          </div>
+          <div className={css.block}>
+            <h3>Расход: </h3>
+            <p>{props.rate}</p>
+          </div>
         </div>
-        <div className={css.block}>
-          <h3>Расход: </h3>
-          <p>{props.rate}</p>
-        </div>
-        <div className={css.block}>
-          <h3>Производитель: </h3>
-          <p>{props.manufacturer}</p>
-        </div>
-        <div className={css.block}>
-          <h3>Категория: </h3>
-          <p>{props.category}</p>
+        <div className={css.button}>
+          <Button>Подробнее</Button>
         </div>
       </div>
     </div>

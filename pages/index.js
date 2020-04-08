@@ -8,9 +8,9 @@ const colors = {
   yellow: "#FFE711",
   green: "#166C00",
 }
-const Home = ({ categories }) => {
+const Home = ({ categories, cultures }) => {
   return (
-    <Layout categories={categories} title="Точка роста">
+    <Layout cultures={cultures} categories={categories} title="Точка роста">
       <MainCategoriesGroup items={categories} />
     </Layout>
   );

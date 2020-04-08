@@ -4,8 +4,8 @@ import Container from "../../../components/Container";
 import Axios from "axios";
 
 
-const Product = ({ categories, product }) => (
-  <Layout categories={categories} title="Точка роста">
+const Product = ({ categories, product, cultures }) => (
+  <Layout cultures={cultures} categories={categories} title="Точка роста">
     <Container>
       <ProductFull {...product} />
     </Container>

@@ -4,7 +4,7 @@ import FilterItem from "./FilterItem";
 import FilterItemPicture from "./FilterItemPicture";
 import cx from 'classnames';
 import css from './Filter.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Axios from 'axios';
 
 const Filter = ({pictured, lines}) => {
@@ -28,9 +28,9 @@ const Filter = ({pictured, lines}) => {
         );
             
     }
-    const isActive = (id, name) => {
+    const isActive = useCallback((id, name) => {
         return params[name] && params[name].split(",").indexOf(id.toString()) !== -1
-    };
+    }, [params]);
 
     useEffect(() => {
       Axios.get(
@@ -40,7 +40,9 @@ const Filter = ({pictured, lines}) => {
         setPictures(data.data);
       });
     }, [query.category])
-
+    
+    console.log({ router});
+    
     return (
       <div className={css.filter}>
         <div className={css.line}>

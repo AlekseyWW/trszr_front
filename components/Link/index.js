@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default ({ href, as, children, activeClassName, ...props }) => {
+export default ({ href, as, children, onClick, activeClassName, ...props }) => {
   const router = useRouter();
 
   let className = children.props.className || "";
@@ -10,11 +10,9 @@ export default ({ href, as, children, activeClassName, ...props }) => {
   if (router.asPath.split('?')[0] === as) {
     className = `${className} ${activeClassName}`;
   }
-  console.log({ fffff: router.asPath, as});
-  
   return (
     <Link href={href} as={as} {...props}>
-      {React.cloneElement(children, { className })}
+      {React.cloneElement(children, { className, onClick })}
     </Link>
   );
 };

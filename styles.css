@@ -17,6 +17,15 @@
   font-weight: 700;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Muller';
+  src: local('Muller Bold'), local('Muller-Bold'),
+      url('./assets/fonts/MullerBold.woff2') format('woff2'),
+      url('./assets/fonts/MullerBold.woff') format('woff'),
+      url('./assets/fonts/MullerBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
 
 * {
   --yellow: #FFE711;

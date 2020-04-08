@@ -24,21 +24,54 @@
 }
 .info {
     flex: 1;
+    display: flex;
+    flex-direction: column;
     padding-left: 64px;
 }
 .info h1 {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
+    font-weight: 900;
+}
+.info p {
+    font-size: 20px;
+    line-height: 1.4;
 }
 
 .block {
     display: block;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
 }
 .block:last-child {
     margin-bottom: 0;
 }
 .block h3 {
-    font-size: 22px;
+    font-size: 24px;
     margin: 0;
-    margin-bottom: 12px;
+    line-height: 1;
+    margin-bottom: 4px;
+    font-weight: 800;
+}
+.group {
+    display: flex;
+}
+.group .block{
+    flex: 1;
+    padding-right: 12px;
+    margin-right: 12px;
+    border-right: 1px solid var(--yellow);
+    margin-bottom: 0;
+}
+.group .block h3{
+    font-weight: 700;
+    font-size: 18px;
+}
+.group .block p{
+    font-weight: 700;
+    font-size: 24px;
+}
+.button {
+    padding-top: 32px;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
 }

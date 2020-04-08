@@ -5,7 +5,7 @@ import css from './Layout.module.css';
 import Header from "../Header";
 import Menu from "../Menu";
 
-const Layout = ({ children, title, categories }) => {
+const Layout = ({ children, title, categories, cultures }) => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isHomePage = router.pathname === "/";
@@ -13,6 +13,8 @@ const Layout = ({ children, title, categories }) => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   }
+  console.log({ categories});
+  
   return (
     <div className={css.container}>
       <Head>
@@ -27,7 +29,7 @@ const Layout = ({ children, title, categories }) => {
         />
         {children}
       </main>
-      <Menu in={isMenuOpen} toggleMenu={toggleMenu} />
+      <Menu in={isMenuOpen} toggleMenu={toggleMenu} categories={categories} cultures={cultures} />
       <footer></footer>
     </div>
   );

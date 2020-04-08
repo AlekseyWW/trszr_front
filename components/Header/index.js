@@ -52,9 +52,11 @@ const Header = ({ isHomePage, categories, toggleMenu }) => (
             </Link>
           ))}
         </div>
-        <div className={css.icon}>
-          <Icon name="icon" />
-        </div>
+        <Link href="/" >
+          <div className={css.icon}>
+            <Icon name="icon" />
+          </div>
+        </Link>
       </>
     )}
   </div>
