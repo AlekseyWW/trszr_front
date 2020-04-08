@@ -27,7 +27,7 @@ const Header = ({ isHomePage, categories, toggleMenu }) => (
           <Icon name="icon" />
         </div>
         <div className={css.logo}>
-          <Link href="/">
+          <Link href="/" >
             <a>
               <Logo />
             </a>
@@ -43,6 +43,7 @@ const Header = ({ isHomePage, categories, toggleMenu }) => (
               href="/[category]"
               as={'/'+ slug}
               activeClassName={css.categories__item_active}
+              shallow
             >
               <div className={css.categories__item}>
                 <span> {name} </span>

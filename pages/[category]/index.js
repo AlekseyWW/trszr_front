@@ -97,6 +97,7 @@ const Category = ({ categories, cultures, cats, prods }) => {
       setCurrentPage(data.meta ? data.meta.current_page : 1);
     });
   }, [router.query]);
+
   
   return (
     <Layout categories={categories} title="Точка роста">

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default ({ href, as, children, activeClassName }) => {
+export default ({ href, as, children, activeClassName, ...props }) => {
   const router = useRouter();
 
   let className = children.props.className || "";
@@ -13,7 +13,7 @@ export default ({ href, as, children, activeClassName }) => {
   console.log({ fffff: router.asPath, as});
   
   return (
-    <Link href={href} as={as}>
+    <Link href={href} as={as} {...props}>
       {React.cloneElement(children, { className })}
     </Link>
   );
