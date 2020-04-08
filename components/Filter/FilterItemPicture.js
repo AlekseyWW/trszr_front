@@ -11,7 +11,7 @@ const FilterItemPicture = ({ name, image, id, onChange, type, isActive }) => (
     name={type}
     className={cx(css.item, { [css.item_active]: isActive })}
   >
-    <img className={css.image} src={`${process.env.api}/${image}`} />
+    <img className={css.image} src={`${process.env.api}/storage/${image}`} />
     <span className={css.title}>{name}</span>
   </button>
 );
