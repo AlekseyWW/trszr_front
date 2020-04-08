@@ -1,4 +1,4 @@
-import cx from 'classNames';
+import cx from 'classnames';
 import css from './Button.module.css';
 
 const Button = ({children, className, type, ...props}) => {
