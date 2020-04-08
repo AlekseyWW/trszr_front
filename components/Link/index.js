@@ -7,10 +7,11 @@ export default ({ href, as, children, activeClassName }) => {
 
   let className = children.props.className || "";
 
-  if (router.asPath.substring(1).split('?')[0] === as) {
+  if (router.asPath.split('?')[0] === as) {
     className = `${className} ${activeClassName}`;
   }
-
+  console.log({ fffff: router.asPath, as});
+  
   return (
     <Link href={href} as={as}>
       {React.cloneElement(children, { className })}

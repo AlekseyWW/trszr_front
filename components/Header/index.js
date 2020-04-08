@@ -22,7 +22,7 @@ const Header = ({ isHomePage, categories, toggleMenu }) => (
   <div className={css.root}>
     <Hamburger toggleMenu={toggleMenu} />
     {isHomePage ? (
-      <>
+      <div className={css.inner}>
         <div className={css.icon}>
           <Icon name="icon" />
         </div>
@@ -33,7 +33,7 @@ const Header = ({ isHomePage, categories, toggleMenu }) => (
             </a>
           </Link>
         </div>
-      </>
+      </div>
     ) : (
       <>
         <div className={css.categories}>
