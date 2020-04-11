@@ -6,8 +6,8 @@ export default ({ href, as, children, onClick, activeClassName, ...props }) => {
   const router = useRouter();
 
   let className = children.props.className || "";
-
-  if (router.asPath.split('?')[0] === as) {
+  
+  if ('/'+ router.asPath.split('?')[0].split('/')[1] === as) {
     className = `${className} ${activeClassName}`;
   }
   return (

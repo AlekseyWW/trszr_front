@@ -1,10 +1,12 @@
 import { Transition } from 'react-transition-group';
 import css from './Menu.module.css';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import cx from 'classnames';
 import SearchForm from '../Forms/SearchForm';
 import Link from '../Link';
 import Icon from '../Icon';
 import { camelize } from '../Header';
+import { useEffect, useRef } from 'react';
 const duration = 300;
 
 const defaultStyle = {
@@ -19,11 +21,24 @@ const transitionStyles = {
     exited: css.exited,
 };
 
-const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => (
+const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
+  const el = useRef();
+
+  useEffect(() => {
+    console.log({ inProp }, el.current);
+    
+    if (inProp) {
+      disableBodyScroll(el.current)
+    } else {
+      enableBodyScroll(el.current)
+    }
+  }, [inProp]);
+  
+  return (
   <Transition in={inProp} timeout={duration}>
     {(state) => (
       <div className={cx(css.root, transitionStyles[state])}>
-        <div className={css.inner}>
+        <div className={css.inner} ref={el} >
           <SearchForm />
           <ul className={css.list}>
             {categories.map(({name, slug: slugParent, children}) => {
@@ -88,6 +103,6 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => (
       </div>
     )}
   </Transition>
-);
+)};
 
 export default Menu;

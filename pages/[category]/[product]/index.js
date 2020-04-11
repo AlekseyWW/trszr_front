@@ -4,23 +4,18 @@ import Container from "../../../components/Container";
 import Axios from "axios";
 
 
-const Product = ({ categories, product, cultures }) => (
+const Product = ({ categories, product, cultures, isServer }) => (
   <Layout cultures={cultures} categories={categories} title="Точка роста">
     <Container>
-      <ProductFull {...product} />
+      <ProductFull {...product} isServer={isServer} />
     </Container>
   </Layout>
 );
 
 Product.getInitialProps = async ({ query }) => {
   const { product, categories, cultures } = query;
-  // const { data } = await Axios.get(
-  //   `http://trszr.ru.test/api/categories?${queryString.stringify(query)}`
-  // );
   const url = `${process.env.api}/api/products/${product}`;
   const { data: {data} } = await Axios.get(url);
-  console.log({ data });
-  
   return {
     product: data,
   };

@@ -10,6 +10,7 @@ import Axios from 'axios';
 const Filter = ({pictured, lines}) => {
     const router = useRouter();
     const [pictures, setPictures] = useState(pictured);
+    const [loading, setLoading] = useState(false);
     const { query, search } = router;
     const { category, ...params } = query;
     const onChange = (e) => {
@@ -33,11 +34,13 @@ const Filter = ({pictured, lines}) => {
     }, [params]);
 
     useEffect(() => {
+      setLoading(true);
       Axios.get(
         `${process.env.api}/api/categories?${queryString.stringify({ category: query.category})}`
       ).then(res => {
         const { data } = res;
         setPictures(data.data);
+        setLoading(false);
       });
     }, [query.category])
     
@@ -53,23 +56,29 @@ const Filter = ({pictured, lines}) => {
               onChange={onChange}
               key={`item-${id}`}
               {...item}
+              loading={loading}
               link="/"
             />
           ))}
+          {loading && !pictured.length && (
+            <>
+              <FilterItemPicture loading={loading} />
+            </>
+          )}
         </div>
         <div className={cx(css.line, css.line_gray)}>
-            <div className={cx(css.inner)}>
-                {lines.map((item, id) => (
-                    <FilterItem
-                    type="cultures"
-                    isActive={isActive(item.id, "cultures")}
-                    onChange={onChange}
-                    key={`item-${id}`}
-                    {...item}
-                    link="/"
-                    />
-                ))}
-            </div>
+          <div className={cx(css.inner)}>
+            {lines.map((item, id) => (
+              <FilterItem
+                type="cultures"
+                isActive={isActive(item.id, "cultures")}
+                onChange={onChange}
+                key={`item-${id}`}
+                {...item}
+                link="/"
+              />
+            ))}
+          </div>
         </div>
       </div>
     );

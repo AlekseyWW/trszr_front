@@ -1,5 +1,6 @@
 .product {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .view {
@@ -63,15 +64,75 @@
 }
 .group .block h3{
     font-weight: 700;
-    font-size: 18px;
+    font-size: 14px;
 }
 .group .block p{
-    font-weight: 700;
-    font-size: 24px;
+    font-weight: 800;
+    font-size: 18px;
 }
 .button {
     padding-top: 32px;
     flex: 1;
     display: flex;
     align-items: flex-end;
+}
+
+.content {
+    padding-top: 70px;
+    font-size: 14px;
+}
+.content h2{
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+.content table, .content td, .content th {
+    border: 2px #808080 solid;
+    border-collapse: collapse;
+}
+.content td {
+    padding: 12px;
+}
+
+.back {
+    position: relative;
+    padding: 0;
+    background: none;
+    border: none;
+    display: block;
+    font-size: 18px;
+    color: var(--green);
+    font-weight: 700;
+    padding: 8px 0;
+    margin-bottom: 6px;
+    height: 32px;
+    outline: none;
+    line-height: 1;
+    align-self: flex-start;
+    cursor: pointer;
+}
+.backIcon {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    margin-top: -13px;
+    margin-right: 12px;
+    height: 26px;
+    width: 34px;
+}
+.backIcon svg{
+    display: block;
+    width: auto;
+    height: 100%;
+    fill: var(--green);
+}
+.backIcon:before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    margin-top: -1px;
+    height: 2px;
+    width: 26px;
+    left: 8px;
+    background-color: var(--green);
 }

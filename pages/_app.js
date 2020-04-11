@@ -3,11 +3,10 @@ import Axios from "axios";
 import '../styles.css';
 
 // This default export is required in a new `pages/_app.js` file.
-export default function MyApp({ Component, pageProps, globalProps }) {
-    console.log({ api: process.env.api });
-    console.log({ api: process.env.prdod });
+export default function MyApp({ Component, pageProps, globalProps, isServer }) {
+    console.log({ isServer });
     
-    return <Component {...pageProps}  {...globalProps} />;
+    return <Component {...pageProps} {...globalProps} isServer={isServer} />;
 }
 
 MyApp.getInitialProps = async (appContext) => {
@@ -20,6 +19,7 @@ MyApp.getInitialProps = async (appContext) => {
     
     return {
         ...appProps,
+        isServer: !process.browser,
         globalProps: {
             categories: categories.data,
             cultures: cultures.data

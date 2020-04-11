@@ -1,15 +1,37 @@
+import parse from "html-react-parser";
 import css from './ProductFull.module.css';
 import Button from '../Button';
+import { useRouter } from "next/router";
+import { useState } from 'react';
+import Link from "../Link";
+import Icon from "../Icon";
 
-const ProductFull = ({ name, image, description, ...props }) => {
-  console.log({ props});
-  
+const ProductFull = ({ name, image, description, isServer, ...props }) => {
+  const [ opened, setOpened ] = useState(false);
+  console.log({ browser: process.browser, isServer });
+  const router = useRouter();
   return (
     <div className={css.product}>
       <div className={css.view}>
         <img src={`http://trszr.ru.test/${image}`} />
       </div>
       <div className={css.info}>
+        <button
+          className={css.back}
+          onClick={
+            !isServer
+              ? router.back
+              : () =>
+                  router.push(`/[category]`, `/${router.query.category}`, {
+                    shallow: true,
+                  })
+          }
+        >
+          <div className={css.backIcon}>
+            <Icon name="back" />
+          </div>
+          <span>Назад к списку</span>
+        </button>
         <h1>{name}</h1>
         <div className={css.block}>
           <p>{description}</p>
@@ -21,7 +43,7 @@ const ProductFull = ({ name, image, description, ...props }) => {
         <div className={css.group}>
           <div className={css.block}>
             <h3>Категория: </h3>
-            <p>{props.category}</p>
+            <p>{props.category.name}</p>
           </div>
           <div className={css.block}>
             <h3>Производитель: </h3>
@@ -36,12 +58,17 @@ const ProductFull = ({ name, image, description, ...props }) => {
             <p>{props.rate}</p>
           </div>
         </div>
-        <div className={css.button}>
-          <Button>Подробнее</Button>
-        </div>
+        {props.content && (
+          <div className={css.button}>
+            <Button onClick={() => setOpened(true)}>Подробнее</Button>
+          </div>
+        )}
       </div>
+      {opened && props.content && (
+        <div className={css.content}>{parse(props.content)}</div>
+      )}
     </div>
-  )
+  );
 };
 
 export default ProductFull;

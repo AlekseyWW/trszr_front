@@ -8,76 +8,25 @@ import Axios from 'axios';
 import queryString from "query-string";
 import { useContext } from 'react/cjs/react.production.min';
 import { useRouter } from "next/router";
-const pictured = [
-  {
-    title: "Гербициды",
-    image: "/images/group.jpg"
-  },
-  {
-    title: "Гербициды",
-    image: "/images/group.jpg"
-  },
-  {
-    title: "Гербициды",
-    image: "/images/group.jpg"
-  },
-  {
-    title: "Гербициды",
-    image: "/images/group.jpg"
-  },
-  {
-    title: "Гербициды",
-    image: "/images/group.jpg"
-  },
-  {
-    title: "Гербициды",
-    image: "/images/group.jpg"
-  },
-  {
-    title: "Гербициды",
-    image: "/images/group.jpg"
-  },
-]
-const lines = [
-  {
-    title: "Морковь"
-  },
-  {
-    title: "Морковь"
-  },
-  {
-    title: "Морковь"
-  },
-  {
-    title: "Морковь"
-  },
-  {
-    title: "Морковь"
-  },
-  {
-    title: "Морковь"
-  },
-  {
-    title: "Морковь"
-  },
-  {
-    title: "Морковь"
-  },
-  {
-    title: "Морковь"
-  },
-  {
-    title: "Морковь"
-  },
-  {
-    title: "Морковь"
-  },
-]
+import cx from "classnames";
+import Icon from '../../components/Icon';
+import { Transition } from 'react-transition-group';
+
+const duration = 300;
+
+const transitionStyles = {
+  entering: css.entering,
+  entered: css.entered,
+  exiting: css.exiting,
+  exited: css.exited,
+};
 
 
 const Category = ({ categories, cultures, cats, prods }) => {
   const router = useRouter();
   const [products, setProducts] = useState(prods.data);
+  const [openedFilter, setOpenedFilter] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(prods.meta ? prods.meta.current_page : 1);
 
   const fetchMoreProducts = async () => {
@@ -88,13 +37,19 @@ const Category = ({ categories, cultures, cats, prods }) => {
       setCurrentPage(data.meta.current_page);
   }
 
+  const toggleFilter = () => {
+    setOpenedFilter(!openedFilter);
+  }
+
   useEffect(() => {
+    setLoading(true);
     Axios.get(
       `${process.env.api}/api/products?${queryString.stringify(router.query)}`
     ).then(res => {
       const { data } = res;
       setProducts(data.data);
       setCurrentPage(data.meta ? data.meta.current_page : 1);
+      setLoading(false);
     });
   }, [router.query]);
 
@@ -104,12 +59,43 @@ const Category = ({ categories, cultures, cats, prods }) => {
       <Container>
         <Filter lines={cultures} pictured={cats} />
         <div className={css.grid}>
-          {products && products.map((product, id) => (
-            <ProductCard key={`prod-${id}`} {...product} category={router.query.category}/>
-          ))}
+          {!loading &&
+            products &&
+            products.map((product, id) => (
+              <ProductCard
+                key={`prod-${id}`}
+                {...product}
+                category={router.query.category}
+              />
+            ))}
+
+          {loading && (
+            <>
+              <ProductCard loading/>
+              <ProductCard loading/>
+              <ProductCard loading/>
+              <ProductCard loading/>
+              <ProductCard loading/>
+              <ProductCard loading/>
+              <ProductCard loading/>
+              <ProductCard loading/>
+              <ProductCard loading/>
+            </>
+          )}
         </div>
-        <button onClick={fetchMoreProducts} className={css.more}>Показать ещё</button>
+        <button onClick={fetchMoreProducts} className={css.more}>
+          Показать ещё
+        </button>
       </Container>
+      <div className={css.filter}>
+        <button onClick={toggleFilter} className={css.filter__button}><Icon className={css.filter__icon} name="filter" /></button>
+      </div>
+        <Transition in={openedFilter} timeout={duration}>
+        
+          {(state) => <div className={cx(css.menu, transitionStyles[state])}>
+            <Filter lines={cultures} pictured={cats} />
+          </div>}
+        </Transition>
     </Layout>
   );
 };

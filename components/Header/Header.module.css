@@ -7,11 +7,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 80px;
 }
 .inner {
     display: flex;
     width: 100%;
-    padding-left: 33%;
     align-items: center;
 }
 .inner div{
@@ -21,12 +21,22 @@
     text-align: center;
     width: 42px;
     height: auto;
-    margin-left: 17px;
     fill: var(--green);
 }
+
+.categories__item .icon {
+    margin-left: 18px;
+}
+
 .logo {
+    position: absolute;
+    top: 0;
+    right: 0;
     text-align: right;
     padding: 0 32px;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 .categories {
     flex: 1;
@@ -36,7 +46,6 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    max-width: 1260px;
     margin: auto;
 }
 .categories + .icon {
@@ -80,4 +89,75 @@
 .categories__item_active::before {
     width: 220px;
     height: 4px;
+}
+
+
+@media (max-width: 1344px) { 
+    div.categories {
+        padding-left: 90px;
+        padding-right: 90px;
+    }
+    .categories__item {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 1150px) { 
+    .categories__item {
+        font-size: 18px;
+    }
+    .categories__item_active {
+        height: 100px;
+    }
+    .categories__item::before {
+        height: 14px;
+    }
+    .categories__item_active::before {
+        width: 200px;
+        height: 4px;
+    }
+    .root {
+        height: 60px;
+        min-height: 60px;
+    }
+}
+
+@media (max-width: 960px) { 
+    .categories {
+        justify-content: flex-start;
+    }
+    .categories__item {
+        flex: initial;
+        padding: 0 12px;
+    }
+    .categories__item span{
+        display: none;
+    }
+    .categories__item::before {
+        width: 0;
+    }
+    .categories__item_active::before {
+        width: 100%;
+    }
+    .categories__item_active {
+        height: 100%;
+    }
+    .categories__item_active span {
+        display: block;
+    }
+}
+
+@media (max-width: 560px) { 
+    .categories {
+        display: none;
+    }
+    .inner {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) { 
+    .root {
+        margin-bottom: 0;
+    }
 }
