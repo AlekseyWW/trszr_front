@@ -1,6 +1,6 @@
-import Layout from "../../../components/Layout";
-import ProductFull from "../../../components/ProductFull";
-import Container from "../../../components/Container";
+import Layout from "../../../../components/Layout";
+import ProductFull from "../../../../components/ProductFull";
+import Container from "../../../../components/Container";
 import Axios from "axios";
 
 

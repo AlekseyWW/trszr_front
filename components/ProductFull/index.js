@@ -22,7 +22,7 @@ const ProductFull = ({ name, image, description, isServer, ...props }) => {
             !isServer
               ? router.back
               : () =>
-                  router.push(`/[category]`, `/${router.query.category}`, {
+                  router.push(`/cat/[category]`, `/cat/${router.query.category}`, {
                     shallow: true,
                   })
           }
@@ -33,12 +33,16 @@ const ProductFull = ({ name, image, description, isServer, ...props }) => {
           <span>Назад к списку</span>
         </button>
         <h1>{name}</h1>
+        <img
+          className={css.image_mob}
+          src={`${process.env.api}/storage/${image}`}
+        />
         <div className={css.block}>
-          <p>{description}</p>
+          <p>{parse(description)}</p>
         </div>
         <div className={css.block}>
           <h3>Состав: </h3>
-          <p>{props.consist}</p>
+          <p>{parse(props.consist)}</p>
         </div>
         <div className={css.group}>
           <div className={css.block}>

@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import Layout from '../../components/Layout';
-import Filter from "../../components/Filter";
-import ProductCard from '../../components/ProductCard';
+import Layout from '../../../components/Layout';
+import Filter from "../../../components/Filter";
+import ProductCard from '../../../components/ProductCard';
 import css from './Category.module.css';
-import Container from '../../components/Container';
+import Container from '../../../components/Container';
 import Axios from 'axios';
 import queryString from "query-string";
 import { useContext } from 'react/cjs/react.production.min';
 import { useRouter } from "next/router";
 import cx from "classnames";
-import Icon from '../../components/Icon';
+import Icon from '../../../components/Icon';
 import { Transition } from 'react-transition-group';
+import ModalWrapper from '../../../components/ModalWrapper';
 
-const duration = 300;
+const duration = 350;
 
 const transitionStyles = {
   entering: css.entering,
@@ -28,10 +29,9 @@ const Category = ({ categories, cultures, cats, prods }) => {
   const [openedFilter, setOpenedFilter] = useState(false);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(prods.meta ? prods.meta.current_page : 1);
-
   const fetchMoreProducts = async () => {
       const { data } = await Axios.get(
-        `${process.env.api}/api/products?${router.query}&page=${currentPage + 1}`
+        `${process.env.api}/api/products?${queryString.stringify(router.query)}&page=${currentPage + 1}`
       );
       setProducts([...products, ...data.data]);
       setCurrentPage(data.meta.current_page);
@@ -40,6 +40,9 @@ const Category = ({ categories, cultures, cats, prods }) => {
   const toggleFilter = () => {
     setOpenedFilter(!openedFilter);
   }
+
+  console.log({ meta: prods.meta.total, products});
+  
 
   useEffect(() => {
     setLoading(true);
@@ -56,7 +59,7 @@ const Category = ({ categories, cultures, cats, prods }) => {
   
   return (
     <Layout cultures={cultures} categories={categories} title="Точка роста">
-      <Container>
+      <Container className={css.container}>
         <Filter lines={cultures} pictured={cats} />
         <div className={css.grid}>
           {!loading &&
@@ -83,19 +86,20 @@ const Category = ({ categories, cultures, cats, prods }) => {
             </>
           )}
         </div>
-        <button onClick={fetchMoreProducts} className={css.more}>
+        {prods.meta.total > products.length && <button onClick={fetchMoreProducts} className={css.more}>
           Показать ещё
-        </button>
+        </button>}
       </Container>
-      <div className={css.filter}>
-        <button onClick={toggleFilter} className={css.filter__button}><Icon className={css.filter__icon} name="filter" /></button>
-      </div>
+      <ModalWrapper>
+        <div className={css.filter}>
+          <button onClick={toggleFilter} className={css.filter__button}><Icon className={css.filter__icon} name="filter" /></button>
+        </div>
         <Transition in={openedFilter} timeout={duration}>
-        
           {(state) => <div className={cx(css.menu, transitionStyles[state])}>
             <Filter lines={cultures} pictured={cats} />
           </div>}
         </Transition>
+      </ModalWrapper>
     </Layout>
   );
 };

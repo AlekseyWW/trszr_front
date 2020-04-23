@@ -10,6 +10,8 @@ import Hamburger from "../Hamburger";
 import Icon from "../Icon";
 import Link from "../Link";
 import Container from "../Container";
+import CategoryItem from "./CategoryItem";
+
 
 export function camelize(str) {
   return str
@@ -22,41 +24,33 @@ export function camelize(str) {
 const Header = ({ isHomePage, categories, toggleMenu }) => (
   <div className={css.root}>
     <Hamburger toggleMenu={toggleMenu} />
-    <Container className={!isHomePage ? css.categories : ''}>
+    <Container className={!isHomePage ? css.categories : ""}>
       {isHomePage ? (
         <div className={css.inner}>
           <div className={css.icon}>
             <Icon name="icon" />
           </div>
-
         </div>
-      ) : (categories.map(({ image, name, slug }, id) => (
-            <Link
-              key={slug}
-              href="/[category]"
-              as={'/'+ slug}
-              activeClassName={css.categories__item_active}
-              shallow
-            >
-              <div className={css.categories__item}>
-                <span> {name} </span>
-                {slug && <Icon name={camelize(slug)} className={css.icon} />}
-              </div>
-            </Link>
-          ))
+      ) : (
+        categories.map(({ image, name, slug }, id) => (
+          <CategoryItem key={slug} name={name} slug={slug} />
+        ))
       )}
     </Container>
-    <Link href="/" >
-      {!isHomePage ? <div className={css.icon}>
-        <Icon name="icon" />
-      </div> :
-      <div className={css.logo}>
-        <Link href="/" >
-          <a>
-            <Logo />
-          </a>
-        </Link>
-      </div>}
+    <Link href="/">
+      {!isHomePage ? (
+        <div className={css.icon}>
+          <Icon name="icon" />
+        </div>
+      ) : (
+        <div className={css.logo}>
+          <Link href="/">
+            <a>
+              <Logo />
+            </a>
+          </Link>
+        </div>
+      )}
     </Link>
   </div>
 );

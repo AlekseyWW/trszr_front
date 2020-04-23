@@ -1,3 +1,13 @@
+.main {
+    position: relative;
+    transform: translateX(0);
+    transition: transform 0.35s ease-out
+}
+.main_menu {
+    transform: translateX(80px);
+    transition: transform 0.175s ease-in
+
+}
 .container {
     width: 100%;
     min-height: 100vh;

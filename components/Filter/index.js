@@ -23,8 +23,8 @@ const Filter = ({pictured, lines}) => {
         }
         params[name] = arr.join(",");
         router.push(
-            `/[category]?${queryString.stringify(params)}`,
-            `/${category}?${queryString.stringify(params)}`,
+            `/cat/[category]?${queryString.stringify(params)}`,
+            `/cat/${category}?${queryString.stringify(params)}`,
             { shallow: true }
         );
             
@@ -42,9 +42,7 @@ const Filter = ({pictured, lines}) => {
         setPictures(data.data);
         setLoading(false);
       });
-    }, [query.category])
-    
-    console.log({ router});
+    }, [query.category]);
     
     return (
       <div className={css.filter}>
@@ -61,9 +59,7 @@ const Filter = ({pictured, lines}) => {
             />
           ))}
           {loading && !pictured.length && (
-            <>
               <FilterItemPicture loading={loading} />
-            </>
           )}
         </div>
         <div className={cx(css.line, css.line_gray)}>

@@ -4,7 +4,7 @@ import css from './ProductCard.module.css';
 
 const ProductCard = ({ name, image, slug, category, loading }) =>
   !loading ? (
-    <Link href="/[category]/[product]" as={`${category}/${slug}`}>
+    <Link href="/cat/[category]/[product]" as={`/cat/${category}/${slug}`}>
       <a className={css.card}>
         <img
           className={css.image}

@@ -8,7 +8,7 @@ export function camelize(str) {
   }).replace(/\s+/g, '').replace('-', '');
 }
 const MainCategory = ({ image, name, slug, icon }) => (
-  <Link href="/[category]" as={slug}>
+  <Link href="/cat/[category]" as={`/cat/${slug}`}>
     <a className={styles.item}>
       <span className={styles.inner}>
         <span

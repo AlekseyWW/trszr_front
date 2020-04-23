@@ -13,7 +13,7 @@ const FilterItemPicture = ({
   loading,
 }) => (
   <button
-    onClick={!loading && onChange}
+    onClick={onChange}
     type="button"
     value={id}
     name={type}

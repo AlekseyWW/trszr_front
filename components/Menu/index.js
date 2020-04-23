@@ -6,7 +6,8 @@ import SearchForm from '../Forms/SearchForm';
 import Link from '../Link';
 import Icon from '../Icon';
 import { camelize } from '../Header';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useContext } from "react";
+import PagesContext from '../../store';
 const duration = 300;
 
 const defaultStyle = {
@@ -23,7 +24,9 @@ const transitionStyles = {
 
 const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
   const el = useRef();
-
+  const { pages } = useContext(PagesContext);
+  console.log({ pages });
+  
   useEffect(() => {
     console.log({ inProp }, el.current);
     
@@ -35,74 +38,123 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
   }, [inProp]);
   
   return (
-  <Transition in={inProp} timeout={duration}>
-    {(state) => (
-      <div className={cx(css.root, transitionStyles[state])}>
-        <div className={css.inner} ref={el} >
-          <SearchForm />
-          <ul className={css.list}>
-            {categories.map(({name, slug: slugParent, children}) => {
-              return <li>
-                <Link
-                  onClick={toggleMenu}
-                  key={slugParent}
-                  href="/[category]"
-                  as={'/' + slugParent}
-                  activeClassName={css.list__item_active}
-                  shallow
-                >
-                  <a className={css.list__item}>
-                    <span> {name} </span>
-                    {slugParent && <Icon name={camelize(slugParent)} className={css.icon} />}
-                  </a>
-                </Link>
-                <ul className={css.sublist}>
-                {children.map(({ id, name, slug}) => {
-                    return <li><Link
+    <Transition in={inProp} timeout={duration}>
+      {(state) => (
+        <div className={cx(css.root, transitionStyles[state])}>
+          <div className={css.inner} ref={el}>
+            <SearchForm className={css.search} />
+            <ul className={css.list}>
+              {pages.map(({ title, slug }) => {
+                return (
+                  <li key={slug}>
+                    <Link
                       onClick={toggleMenu}
                       key={slug}
-                      href={`/[category]?categories=${id}`}
-                      as={`/${slugParent}?categories=${id}`}
+                      href="/[slug]"
+                      as={"/" + slug}
                       activeClassName={css.list__item_active}
-                      shallow
+                      prefetch={false}
+                    >
+                      <a className={cx(css.list__item, css.list__item_page)}>
+                        <span> {title} </span>
+                        {slug && (
+                          <Icon name={camelize(slug)} className={css.icon} />
+                        )}
+                      </a>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <ul className={css.list}>
+              {categories.map(({ name, slug: slugParent, children }) => {
+                return (
+                  <li key={slugParent}>
+                    <Link
+                      onClick={toggleMenu}
+                      key={slugParent}
+                      href="/cat/[category]"
+                      as={"/cat/" + slugParent}
+                      activeClassName={css.list__item_active}
+                      prefetch={false}
                     >
                       <a className={css.list__item}>
                         <span> {name} </span>
-                        {slug && <Icon name={camelize(slug)} className={css.icon} />}
+                        {slugParent && (
+                          <Icon
+                            name={camelize(slugParent)}
+                            className={css.icon}
+                          />
+                        )}
                       </a>
-                    </Link></li>
+                    </Link>
+                    <ul className={css.sublist}>
+                      {children.map(({ id, name, slug }) => {
+                        return (
+                          <li key={slug}>
+                            <Link
+                              onClick={toggleMenu}
+                              href={`/cat/[category]?categories=${id}`}
+                              as={`/cat/${slugParent}?categories=${id}`}
+                              activeClassName={css.list__item_active}
+                              prefetch={false}
+                            >
+                              <a className={css.list__item}>
+                                <span> {name} </span>
+                                {slug && (
+                                  <Icon
+                                    name={camelize(slug)}
+                                    className={css.icon}
+                                  />
+                                )}
+                              </a>
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </li>
+                );
+              })}
+            </ul>
+            <ul className={css.list}>
+              <li>
+                <span className={css.list__item}>Культуры</span>
+                <ul className={css.sublist}>
+                  {cultures.map(({ name, slug, children }) => {
+                    return (
+                      <li key={name}>
+                        <Link
+                          onClick={toggleMenu}
+                          href="/cat/[category]"
+                          as={"/cat/" + slug}
+                          activeClassName={css.list__item_active}
+                          prefetch={false}
+                        >
+                          <a className={css.list__item}>
+                            <span> {name} </span>
+                            {slug && (
+                              <Icon
+                                name={camelize(slug)}
+                                className={css.icon}
+                              />
+                            )}
+                          </a>
+                        </Link>
+                      </li>
+                    );
                   })}
                 </ul>
               </li>
-            })}
-          </ul>
-          <ul className={css.list}>
-            {cultures.map(({name, slug, children}) => {
-              return <li>
-                <Link
-                  onClick={toggleMenu}
-                  key={slug}
-                  href="/[category]"
-                  as={'/' + slug}
-                  activeClassName={css.list__item_active}
-                  shallow
-                >
-                  <a className={css.list__item}>
-                    <span> {name} </span>
-                    {slug && <Icon name={camelize(slug)} className={css.icon} />}
-                  </a>
-                </Link>
-              </li>
-            })}
-          </ul>
+            </ul>
+            <button onClick={toggleMenu} className={css.close}>
+              <i></i>
+              <i></i>
+            </button>
+          </div>
         </div>
-        <button onClick={toggleMenu} className={css.close}>
-          <i></i>
-          <i></i>
-        </button>
-      </div>
-    )}
-  </Transition>
-)};
+      )}
+    </Transition>
+  );};
 
 export default Menu;

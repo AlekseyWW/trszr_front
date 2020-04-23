@@ -32,6 +32,7 @@
 }
 
 .item {
+    cursor: pointer;
     position: relative;
     padding: 0 18px;
     display: flex;

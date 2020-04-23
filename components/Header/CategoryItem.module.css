@@ -1,0 +1,137 @@
+.item {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 900;
+    max-width: 420px;
+    text-transform: uppercase;
+    font-family: Muller;
+    background-color: var(--yellow);
+    cursor: pointer;
+}
+.item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 20px;
+    background-color: var(--green);
+    transition: transform 500ms var(--easeOutQuint);
+    transform-origin: 0 100%;
+    z-index: 1;
+
+}
+.item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--yellow);
+    transition: transform 500ms var(--easeOutQuint);
+    transform-origin: 0 0;
+
+}
+.inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    transition: transform 500ms var(--easeOutQuint);
+
+}
+
+@media (min-width: 1151px) { 
+
+    .item:hover::before {
+        transform: translateY(20px) scaleX(3) scaleY(0.5);
+    }
+    .item:hover::after {
+        transform: scaleY(1.25)
+    }
+    .item:hover .inner {
+        transform: translateY(10px);
+    }
+
+    .item_active::before, .item_active:hover::before {
+        transform: translateY(40px) scaleX(3.6) scaleY(0.2);
+    }
+    .item_active::after, .item_active:hover::after {
+        transform: scaleY(1.5)
+    }
+    .item_active .inner, .item_active:hover .inner {
+        transform: translateY(20px);
+    }
+}
+@media (min-width: 961px) and (max-width: 1150px) { 
+
+    .item:hover::before {
+        transform: translateY(15px) scaleX(3) scaleY(0.5);
+    }
+    .item:hover::after {
+        transform: scaleY(1.25)
+    }
+    .item:hover .inner {
+        transform: translateY(5px);
+    }
+
+    .item_active::before, .item_active:hover::before {
+        transform: translateY(30px) scaleX(3.6) scaleY(0.2);
+    }
+    .item_active::after, .item_active:hover::after {
+        transform: scaleY(1.5)
+    }
+    .item_active .inner, .item_active:hover .inner {
+        transform: translateY(15px);
+    }
+}
+
+
+
+@media (max-width: 1344px) { 
+    .item {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 1150px) { 
+    .item {
+        font-size: 18px;
+    }
+    .item::before {
+        height: 14px;
+    }
+}
+.icon {
+    text-align: center;
+    width: 42px;
+    height: auto;
+    fill: var(--green);
+    margin-left: 18px;
+
+}
+
+
+@media (max-width: 960px) { 
+    .item {
+        flex: initial;
+        padding: 0 12px;
+    }
+    .inner span{
+        display: none;
+    }
+    .item::before {
+        width: 0;
+    }
+    .item::after {
+        display: none;
+    }
+    .item_active .inner span {
+        display: block;
+    }
+}
