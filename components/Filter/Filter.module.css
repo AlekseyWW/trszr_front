@@ -30,6 +30,42 @@
     align-items: center;
     flex-wrap: wrap;
 }
+.slide {
+   width: auto; 
+}
+.container {
+    padding: 0 40px;
+}
+.next {
+    position: absolute;
+    background: none;
+    border: none;
+    outline: none;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 40px;
+}
+.prev {
+    position: absolute;
+    background: none;
+    border: none;
+    outline: none;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 40px;
+}
+.next svg{
+    fill: var(--green);
+    transform: scaleX(-1);
+}
+.prev svg{
+    fill: var(--green);
+}
+.hidden_nav {
+    display: none !important;
+}
 
 .item {
     cursor: pointer;

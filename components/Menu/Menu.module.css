@@ -176,4 +176,14 @@
     padding: 16px;
 }
 
+@media (max-width: 768px) {
+    .list {
+        font-size: 28px;
+    }
+    .list__item_page {
+        font-size: 32px;
+        padding: 8px;
+    }
+}
+
 

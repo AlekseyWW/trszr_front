@@ -22,7 +22,7 @@ export function camelize(str) {
     .replace("-", "");
 }
 const Header = ({ isHomePage, categories, toggleMenu }) => (
-  <div className={css.root}>
+  <header className={css.root}>
     <Hamburger toggleMenu={toggleMenu} />
     <Container className={!isHomePage ? css.categories : ""}>
       {isHomePage ? (
@@ -52,7 +52,7 @@ const Header = ({ isHomePage, categories, toggleMenu }) => (
         </div>
       )}
     </Link>
-  </div>
+  </header>
 );
 
 export default Header;

@@ -5,10 +5,9 @@
 
 .view {
     display: block;
-    flex: 1;
     position: relative;
     align-self: flex-start;
-
+    min-width: 50%;
 }
 .image_mob {
     display: none;
@@ -29,10 +28,11 @@
     object-fit: cover;
 }
 .info {
-    flex: 1;
     display: flex;
     flex-direction: column;
     padding-left: 64px;
+    min-width: 50%;
+    width: 50%;
 }
 .info h1 {
     margin-bottom: 24px;
@@ -75,11 +75,14 @@
     font-weight: 800;
     font-size: 18px;
 }
-.button {
+.buttons {
     padding-top: 32px;
-    flex: 1;
+    display: flex;
+}
+.button {
     display: flex;
     align-items: flex-end;
+    margin-right: 16px;
 }
 
 .content {
@@ -170,4 +173,15 @@
         margin-left: 34px;
         margin-bottom: 12px;
     }
+}
+
+/* FORM */
+
+.form h3 {
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 16px;
+}
+.input {
+    font-size: 18px;
 }

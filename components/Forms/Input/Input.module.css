@@ -2,8 +2,12 @@
 .input {
     position: relative;
     font-size: 24px;
-    color: var(--yellow);
-
+    color: currentColor;
+    margin-bottom: 24px;
+    padding-top: 20px;
+}
+.input:last-child {
+    margin-bottom: 0;
 }
 .input::before {
     content: '';
@@ -17,28 +21,37 @@
     display: block;
     background: none;
     border: none;
-    font-size: 32px;
     outline: none;
-    color: var(--yellow);
+    color: currentColor;
     line-height: 1.2;
     padding-bottom: 4px;
+    font-size: inherit;
+    width: 100%;
 
+}
+.input:autofill {
+    display: block;
+    background: none;
+    border: none;
+    outline: none;
+    color: currentColor;
+    line-height: 1.2;
+    padding-bottom: 4px;
 }
 .label {
     opacity: 0.9;
-    font-size: 24px;
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     pointer-events: none;
     outline: none;
     transition: transform 175ms ease-in-out;
-    transform-origin:  0 100%;
-    line-height: 1.5;
+    transform-origin:  0 0;
+    transform: translateY(20px);
+    line-height: 1.2;
 }
 
 .value + .label, .field:focus + .label {
-    transform: translateY(-90%) scale(0.7);
+    transform: translateY(0) scale(0.7);
 }

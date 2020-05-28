@@ -28,12 +28,10 @@ const Page = ({ page }) => {
   
   const { title, body } = page;
   return (
-    <Layout title="Точка роста">
-      <Container className={css.inner}>
-        <h1>{title}</h1>
-        {parse(body)}
-      </Container>
-    </Layout>
+    <Container className={css.inner}>
+      <h1>{title}</h1>
+      {parse(body)}
+    </Container>
   );
 };
 

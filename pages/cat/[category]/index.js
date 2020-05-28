@@ -58,7 +58,7 @@ const Category = ({ categories, cultures, cats, prods }) => {
 
   
   return (
-    <Layout cultures={cultures} categories={categories} title="Точка роста">
+    <>
       <Container className={css.container}>
         <Filter lines={cultures} pictured={cats} />
         <div className={css.grid}>
@@ -100,7 +100,7 @@ const Category = ({ categories, cultures, cats, prods }) => {
           </div>}
         </Transition>
       </ModalWrapper>
-    </Layout>
+    </>
   );
 };
 

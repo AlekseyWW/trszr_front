@@ -117,7 +117,7 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
                 );
               })}
             </ul>
-            <ul className={css.list}>
+            {/* <ul className={css.list}>
               <li>
                 <span className={css.list__item}>Культуры</span>
                 <ul className={css.sublist}>
@@ -146,7 +146,7 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
                   })}
                 </ul>
               </li>
-            </ul>
+            </ul> */}
             <button onClick={toggleMenu} className={css.close}>
               <i></i>
               <i></i>

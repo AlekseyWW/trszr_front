@@ -25,6 +25,27 @@
     margin: 0 auto;
     color: currentColor;
 }
+
+
+.root__button:hover .root__item:first-child {
+    transform: translateY(-2px);
+    transition-duration: 175ms;
+}
+.root__button:hover .root__item:last-child {
+    transform: translateY(2px);
+    transition-duration: 175ms;
+}
+
+.root__button_active .root__item:first-child, .root__button_active:hover .root__item:first-child {
+    transform: translateY(2px);
+    transition-duration: 175ms;
+
+}
+.root__button_active .root__item:last-child, .root__button_active:hover .root__item:last-child {
+    transform: translateY(-2px);
+    transition-duration: 175ms;
+}
+
 .root__item {
     width: 36px;
     display: block;
@@ -32,6 +53,8 @@
     flex-direction: column;
     background-color: currentColor;
     justify-content: space-between;
+    transition: transform 350ms
+
 }
 
 @media (max-width: 960px) { 

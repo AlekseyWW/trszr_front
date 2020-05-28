@@ -5,11 +5,7 @@ import { MainCategoriesGroup } from "../components/MainCategory";
 import Layout from '../components/Layout'
 
 const Home = ({ categories, cultures }) => {
-  return (
-    <Layout cultures={cultures} categories={categories} title="Точка роста">
-      <MainCategoriesGroup items={categories} />
-    </Layout>
-  );
+  return <MainCategoriesGroup items={categories} />;
 };
 
 export default Home

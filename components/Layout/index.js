@@ -23,12 +23,12 @@ const Layout = ({ children, title }) => {
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header
+        isHomePage={isHomePage}
+        toggleMenu={toggleMenu}
+        categories={categories}
+      />
       <main className={cx(css.main, isMenuOpen ? css.main_menu : '')}>
-        <Header
-          isHomePage={isHomePage}
-          toggleMenu={toggleMenu}
-          categories={categories}
-        />
         {children}
       </main>
       <Menu in={isMenuOpen} toggleMenu={toggleMenu} categories={categories} cultures={cultures} />

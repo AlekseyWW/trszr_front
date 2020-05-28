@@ -2,20 +2,26 @@ import App from 'next/app'
 import Axios from "axios";
 import '../styles.css';
 import PagesContext from '../store';
+import Layout from '../components/Layout';
+import "swiper/css/swiper.css";
+import { Provider } from '../components/Modal';
 
-// This default export is required in a new `pages/_app.js` file.
 export default function MyApp({ Component, pageProps, globalProps, isServer }) {
     
     return (
       <PagesContext.Provider value={globalProps}>
-        <Component {...pageProps} {...globalProps} isServer={isServer} />
+        <Provider>
+          <Layout>
+            <Component {...pageProps} {...globalProps} isServer={isServer} />
+          </Layout>
+        </Provider>
       </PagesContext.Provider>
     );
 }
 
 MyApp.getInitialProps = async (appContext) => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`;
     const appProps = await App.getInitialProps(appContext);
+
     const { data: categories } = await Axios.get(
         `${process.env.api}/api/categories?main=true`
     );

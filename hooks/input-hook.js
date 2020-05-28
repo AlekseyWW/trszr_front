@@ -2,7 +2,6 @@ import { useState } from "react";
 
 export const useInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
-
   return {
     value,
     setValue,
@@ -10,8 +9,6 @@ export const useInput = (initialValue) => {
     bind: {
       value,
       onChange: (event) => {
-        console.log("sdcsdckasbdvkljsdb", event.target.value);
-          
         setValue(event.target.value);
       },
     },

@@ -6,6 +6,61 @@ import cx from 'classnames';
 import css from './Filter.module.css';
 import { useEffect, useState, useCallback } from 'react';
 import Axios from 'axios';
+import Swiper from "react-id-swiper";
+import Icon from '../Icon';
+import { useMemo } from 'react';
+
+const SimpleSwiper = ({ children, slidesPerView, ...props }) => {
+  const [swiper, setSwiper] = useState(null);
+  const [isEnd, setIsEnd] = useState(true);
+  const [isBeginning, setIsBeginning] = useState(true);
+
+  useEffect(() => {
+    if (swiper !== null) {
+      setIsEnd(swiper.isEnd);
+      setIsBeginning(swiper.isBeginning);
+      swiper.on("transitionEnd", function () {
+        setIsEnd(swiper.isEnd);
+        setIsBeginning(swiper.isBeginning);
+      });
+    }
+  }, [swiper]);
+
+  const goNext = () => {
+    if (swiper !== null) {
+      swiper.slideNext();
+    }
+  };
+
+  const goPrev = () => {
+    if (swiper !== null) {
+      swiper.slidePrev();
+    }
+  };
+  const params = {
+    slidesPerView: "auto",
+    slideClass: css.slide,
+    simulateTouch: false,
+    ...props,
+  };
+
+  const nextClass = cx(css.next, isEnd ? css.hidden_nav : "");
+  const prevClass = cx(css.prev, isBeginning ? css.hidden_nav : "");
+  
+  return (
+    <>
+      <Swiper getSwiper={setSwiper} {...params}>
+        {children}
+      </Swiper>
+      <button onClick={goPrev} className={prevClass}>
+        <Icon name="back" />
+      </button>
+      <button onClick={goNext} className={nextClass}>
+        <Icon name="back" />
+      </button>
+    </>
+  );
+};
 
 const Filter = ({pictured, lines}) => {
     const router = useRouter();
@@ -47,33 +102,45 @@ const Filter = ({pictured, lines}) => {
     return (
       <div className={css.filter}>
         <div className={css.line}>
-          {pictures.map((item, id) => (
-            <FilterItemPicture
-              isActive={isActive(item.id, "categories")}
-              type="categories"
-              onChange={onChange}
-              key={`item-${id}`}
-              {...item}
-              loading={loading}
-              link="/"
-            />
-          ))}
+          {pictures.length && (
+            <SimpleSwiper>
+              {pictures.map((item, id) => (
+                <div>
+                  <FilterItemPicture
+                    isActive={isActive(item.id, "categories")}
+                    type="categories"
+                    onChange={onChange}
+                    key={`item-${id}`}
+                    {...item}
+                    loading={loading}
+                    link="/"
+                  />
+                </div>
+              ))}
+            </SimpleSwiper>
+          )}
           {loading && !pictured.length && (
-              <FilterItemPicture loading={loading} />
+            <FilterItemPicture loading={loading} />
           )}
         </div>
         <div className={cx(css.line, css.line_gray)}>
           <div className={cx(css.inner)}>
-            {lines.map((item, id) => (
-              <FilterItem
-                type="cultures"
-                isActive={isActive(item.id, "cultures")}
-                onChange={onChange}
-                key={`item-${id}`}
-                {...item}
-                link="/"
-              />
-            ))}
+            {lines.length && (
+              <SimpleSwiper slidesPerView={6} freeMode>
+                {lines.map((item, id) => (
+                  <div>
+                    <FilterItem
+                      type="cultures"
+                      isActive={isActive(item.id, "cultures")}
+                      onChange={onChange}
+                      key={`item-${id}`}
+                      {...item}
+                      link="/"
+                    />
+                  </div>
+                ))}
+              </SimpleSwiper>
+            )}
           </div>
         </div>
       </div>

@@ -5,10 +5,31 @@ import { useRouter } from "next/router";
 import { useState } from 'react';
 import Link from "../Link";
 import Icon from "../Icon";
+import { ModalConsumer } from "../Modal";
+import Input from "../Forms/Input";
+import { useInput } from "../../hooks/input-hook";
+import { useForm } from "react-hook-form";
+
+const ModalForm = () => () => {
+  console.log('!!!!!!');
+  const { register, handleSubmit, watch, errors } = useForm();
+  const onSubmit = (data) => console.log(data);
+  return (
+    <div className={css.form}>
+      <h3>Заявка</h3>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input className={css.input} register={register} name="name" label="Имя" />
+        <Input className={css.input} register={register} name="email" label="Email" />
+        <Input className={css.input} register={register} name="company" label="Компания" />
+        <Input className={css.input} register={register} name="phone" label="Телефон" />
+        <Button type="submit">Отправить</Button>
+      </form>
+    </div>
+  );
+}
 
 const ProductFull = ({ name, image, description, isServer, ...props }) => {
   const [ opened, setOpened ] = useState(false);
-  console.log({ browser: process.browser, isServer });
   const router = useRouter();
   return (
     <div className={css.product}>
@@ -22,9 +43,13 @@ const ProductFull = ({ name, image, description, isServer, ...props }) => {
             !isServer
               ? router.back
               : () =>
-                  router.push(`/cat/[category]`, `/cat/${router.query.category}`, {
-                    shallow: true,
-                  })
+                  router.push(
+                    `/cat/[category]`,
+                    `/cat/${router.query.category}`,
+                    {
+                      shallow: true,
+                    }
+                  )
           }
         >
           <div className={css.backIcon}>
@@ -62,11 +87,20 @@ const ProductFull = ({ name, image, description, isServer, ...props }) => {
             <p>{props.rate}</p>
           </div>
         </div>
-        {props.content && (
+        <div className={css.buttons}>
           <div className={css.button}>
-            <Button onClick={() => setOpened(true)}>Подробнее</Button>
+            <ModalConsumer>
+              {({ showModal }) => (
+                <Button onClick={() => showModal(ModalForm)}>Оставить заявку</Button>
+              )}
+            </ModalConsumer>
           </div>
-        )}
+          {props.content && !opened && (
+            <div className={css.button}>
+              <Button onClick={() => setOpened(true)}>Подробнее</Button>
+            </div>
+          )}
+        </div>
       </div>
       {opened && props.content && (
         <div className={css.content}>{parse(props.content)}</div>

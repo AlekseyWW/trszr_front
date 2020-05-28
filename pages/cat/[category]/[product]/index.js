@@ -5,11 +5,9 @@ import Axios from "axios";
 
 
 const Product = ({ categories, product, cultures, isServer }) => (
-  <Layout cultures={cultures} categories={categories} title="Точка роста">
     <Container>
       <ProductFull {...product} isServer={isServer} />
     </Container>
-  </Layout>
 );
 
 Product.getInitialProps = async ({ query }) => {
