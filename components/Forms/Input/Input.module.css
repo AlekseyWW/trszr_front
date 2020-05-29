@@ -29,15 +29,7 @@
     width: 100%;
 
 }
-.input:autofill {
-    display: block;
-    background: none;
-    border: none;
-    outline: none;
-    color: currentColor;
-    line-height: 1.2;
-    padding-bottom: 4px;
-}
+
 .label {
     opacity: 0.9;
     position: absolute;
