@@ -5,15 +5,17 @@ import PagesContext from '../store';
 import Layout from '../components/Layout';
 import "swiper/css/swiper.css";
 import { Provider } from '../components/Modal';
-
+import { YMaps } from "react-yandex-maps";
 export default function MyApp({ Component, pageProps, globalProps, isServer }) {
     
     return (
       <PagesContext.Provider value={globalProps}>
         <Provider>
-          <Layout>
-            <Component {...pageProps} {...globalProps} isServer={isServer} />
-          </Layout>
+          <YMaps>
+            <Layout>
+              <Component {...pageProps} {...globalProps} isServer={isServer} />
+            </Layout>
+          </YMaps>
         </Provider>
       </PagesContext.Provider>
     );
@@ -28,7 +30,15 @@ MyApp.getInitialProps = async (appContext) => {
     const { data: pages } = await Axios.get(
         `${process.env.api}/api/pages`
     );
+    const { data: settings } = await Axios.get(
+        `${process.env.api}/api/settings`
+    );
     const { data: cultures } = await Axios.get(`${process.env.api}/api/cultures`);
+    const settingsObject = {};
+    settings.data.forEach(item => {
+      settingsObject[item.key.split('.')[1]] = item.value;
+    })
+
     
     return {
       ...appProps,
@@ -37,6 +47,7 @@ MyApp.getInitialProps = async (appContext) => {
         categories: categories.data,
         cultures: cultures.data,
         pages: pages.data,
+        settings: settingsObject,
       },
     };
 }

@@ -14,7 +14,7 @@ const defaultStyle = {
   transition: `transform ${duration}ms, opacity ${duration}ms ease-in-out`,
   opacity: 0,
 };
-
+const defaultsPages = ["kontakty"];
 const transitionStyles = {
     entering: css.entering,
     entered: css.entered,
@@ -25,11 +25,8 @@ const transitionStyles = {
 const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
   const el = useRef();
   const { pages } = useContext(PagesContext);
-  console.log({ pages });
   
   useEffect(() => {
-    console.log({ inProp }, el.current);
-    
     if (inProp) {
       disableBodyScroll(el.current)
     } else {
@@ -50,10 +47,10 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
                     <Link
                       onClick={toggleMenu}
                       key={slug}
-                      href="/[slug]"
+                      href={defaultsPages.indexOf(slug) !== -1 ? slug : "/[slug]"}
                       as={"/" + slug}
                       activeClassName={css.list__item_active}
-                      prefetch={false}
+                      prefetch={true}
                     >
                       <a className={cx(css.list__item, css.list__item_page)}>
                         <span> {title} </span>

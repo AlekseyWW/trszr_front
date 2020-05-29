@@ -90,3 +90,15 @@ a {
   text-decoration: none;
   color: currentColor;
 }
+
+h2 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+h3 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
