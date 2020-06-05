@@ -14,7 +14,7 @@ const defaultStyle = {
   transition: `transform ${duration}ms, opacity ${duration}ms ease-in-out`,
   opacity: 0,
 };
-const defaultsPages = ["kontakty"];
+export const defaultsPages = ["kontakty"];
 const transitionStyles = {
     entering: css.entering,
     entered: css.entered,
@@ -33,15 +33,16 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
       enableBodyScroll(el.current)
     }
   }, [inProp]);
+  console.log({pages});
   
   return (
     <Transition in={inProp} timeout={duration}>
       {(state) => (
         <div className={cx(css.root, transitionStyles[state])}>
           <div className={css.inner} ref={el}>
-            <SearchForm className={css.search} />
+            {/* <SearchForm className={css.search} /> */}
             <ul className={css.list}>
-              {pages.map(({ title, slug }) => {
+              {pages.filter(el => el.in_menu).map(({ title, slug }) => {
                 return (
                   <li key={slug}>
                     <Link

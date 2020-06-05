@@ -33,6 +33,9 @@ MyApp.getInitialProps = async (appContext) => {
     const { data: settings } = await Axios.get(
         `${process.env.api}/api/settings`
     );
+    const { data: sertificates } = await Axios.get(
+        `${process.env.api}/api/sertificates`
+    );
     const { data: cultures } = await Axios.get(`${process.env.api}/api/cultures`);
     const settingsObject = {};
     settings.data.forEach(item => {
@@ -48,6 +51,7 @@ MyApp.getInitialProps = async (appContext) => {
         cultures: cultures.data,
         pages: pages.data,
         settings: settingsObject,
+        sertificates: sertificates.data,
       },
     };
 }

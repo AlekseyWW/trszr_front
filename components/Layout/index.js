@@ -6,6 +6,7 @@ import css from './Layout.module.css';
 import Header from "../Header";
 import Menu from "../Menu";
 import PagesContext from "../../store";
+import Footer from "../Footer";
 
 const Layout = ({ children, title }) => {
   const router = useRouter();
@@ -17,7 +18,7 @@ const Layout = ({ children, title }) => {
     setIsMenuOpen(!isMenuOpen);
   }
   
-  return (
+  return (<>
     <div className={css.container}>
       <Head>
         <title>{title}</title>
@@ -32,9 +33,9 @@ const Layout = ({ children, title }) => {
         {children}
       </main>
       <Menu in={isMenuOpen} toggleMenu={toggleMenu} categories={categories} cultures={cultures} />
-      <footer></footer>
     </div>
-  );
+    <Footer />
+  </>);
 };
 
 export default Layout;

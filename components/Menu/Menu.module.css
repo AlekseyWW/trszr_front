@@ -159,7 +159,7 @@
     color: var(--green);
 }
 .list__item_page {
-    font-size: 40px;
+    font-size: 32px;
 }
 .list__item_active {
     background-color: var(--yellow);

@@ -31,6 +31,18 @@
     border-left: 2px solid var(--yellow);
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 40px;
+}
+.block {
+    margin-bottom: 32px;
+}
+.block:last-child {
+    margin-bottom: 0;
+}
+
 
 @media (max-width: 768px) { 
     .inner {

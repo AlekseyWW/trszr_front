@@ -102,7 +102,7 @@ const Filter = ({pictured, lines}) => {
     return (
       <div className={css.filter}>
         <div className={css.line}>
-          {pictures.length && (
+          {pictures.length > 0 && (
             <SimpleSwiper>
               {pictures.map((item, id) => (
                 <div>
@@ -125,7 +125,7 @@ const Filter = ({pictured, lines}) => {
         </div>
         <div className={cx(css.line, css.line_gray)}>
           <div className={cx(css.inner)}>
-            {lines.length && (
+            {lines.length > 0 && (
               <SimpleSwiper slidesPerView={6} freeMode>
                 {lines.map((item, id) => (
                   <div>

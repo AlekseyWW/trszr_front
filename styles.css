@@ -102,3 +102,18 @@ h3 {
     font-weight: 800;
     margin-bottom: 16px;
 }
+h4 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+h5 {
+  font-size: 16px;
+  opacity: 0.9;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+svg {
+  fill: currentColor
+}

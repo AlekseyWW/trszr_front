@@ -44,13 +44,13 @@ const ProductFull = ({ name, image, description, isServer, ...props }) => {
           className={css.image_mob}
           src={`${process.env.api}/storage/${image}`}
         />
-        <div className={css.block}>
+        {description && <div className={css.block}>
           <p>{parse(description)}</p>
-        </div>
-        <div className={css.block}>
+        </div>}
+        {props.consist && <div className={css.block}>
           <h3>Состав: </h3>
           <p>{parse(props.consist)}</p>
-        </div>
+        </div>}
         <div className={css.group}>
           <div className={css.block}>
             <h3>Категория: </h3>

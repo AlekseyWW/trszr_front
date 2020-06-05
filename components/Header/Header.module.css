@@ -16,15 +16,14 @@
     display: flex;
     width: 100%;
     align-items: center;
-}
-.inner div{
-    flex: 1;
+    justify-content: center;
 }
 .icon {
     text-align: center;
-    width: 42px;
     height: auto;
     fill: var(--green);
+    display: flex;
+    align-items: center;
 }
 
 .categories__item .icon {

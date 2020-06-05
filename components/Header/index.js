@@ -11,6 +11,7 @@ import Icon from "../Icon";
 import Link from "../Link";
 import Container from "../Container";
 import CategoryItem from "./CategoryItem";
+import SearchForm from "../Forms/SearchForm";
 
 
 export function camelize(str) {
@@ -29,6 +30,7 @@ const Header = ({ isHomePage, categories, toggleMenu }) => (
         <div className={css.inner}>
           <div className={css.icon}>
             <Icon name="icon" />
+            <Logo />
           </div>
         </div>
       ) : (
@@ -37,7 +39,8 @@ const Header = ({ isHomePage, categories, toggleMenu }) => (
         ))
       )}
     </Container>
-    <Link href="/">
+    <SearchForm />
+    {/* <Link href="/">
       {!isHomePage ? (
         <div className={css.icon}>
           <Icon name="icon" />
@@ -51,7 +54,7 @@ const Header = ({ isHomePage, categories, toggleMenu }) => (
           </Link>
         </div>
       )}
-    </Link>
+    </Link> */}
   </header>
 );
 

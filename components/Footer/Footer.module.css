@@ -1,0 +1,115 @@
+.root {
+    display: block;
+    padding: 32px;
+    background-color: var(--green);
+    color: var(--yellow);
+}
+.root h4{
+    font-size: 20px;
+}
+.root h5 {
+    font-size: 14px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+.column {
+    flex: 1;
+    font-size: 14px;
+}
+.flex {
+    display: flex;
+    flex: initial;
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+}
+.sertificates {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+.sertificate {
+    margin-right: 24px;
+}
+.sertificate:last-child {
+    margin-right: 0;
+}
+.sertificate img {
+    width: 100%;
+    max-width: 200px;
+}
+
+.list {
+    display: block;
+    position: relative;
+    list-style: none;
+    font-size: 18px;
+    padding-bottom: 32px;
+    flex: 1;
+}
+.list::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 6px;
+    width: 60px;
+    height: 4px;
+    background-color: var(--yellow);
+}
+.categories {
+    display: flex;
+    flex: 3;
+}
+/* .categories li{
+    width: 50%;
+} */
+.sublist {
+    list-style: none;
+    font-size: 14px;
+}
+
+.list__item {
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    transition: background-color 350ms ease-in-out
+}
+.list__item:hover {
+    transition-duration: 350ms;
+    background-color: #d4c00f;
+    color: var(--green);
+}
+.list__item_page {
+    /* font-size: 40px; */
+}
+.list__item_active {
+    background-color: var(--yellow);
+    color: var(--green);
+}
+.icon {
+    height: 28px;
+    width: auto;
+    fill: currentColor;
+    margin-left: 12px;
+}
+
+.bottom {
+    border-top: 1px solid var(--green);
+}
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    margin-left: -42px;
+}
+.logo svg {
+    fill: currentColor;
+}
+.logo svg:first-child {
+    margin-right: 8px;
+}

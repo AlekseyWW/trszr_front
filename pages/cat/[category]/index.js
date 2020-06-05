@@ -41,9 +41,6 @@ const Category = ({ categories, cultures, cats, prods }) => {
     setOpenedFilter(!openedFilter);
   }
 
-  console.log({ meta: prods.meta.total, products});
-  
-
   useEffect(() => {
     setLoading(true);
     Axios.get(
@@ -86,7 +83,7 @@ const Category = ({ categories, cultures, cats, prods }) => {
             </>
           )}
         </div>
-        {prods.meta.total > products.length && <button onClick={fetchMoreProducts} className={css.more}>
+        {(prods.meta && products.length > 0 &&  prods.meta.total > products.length) && <button onClick={fetchMoreProducts} className={css.more}>
           Показать ещё
         </button>}
       </Container>

@@ -8,7 +8,6 @@ const ContactForm = () => {
   const onSubmit = (data) => console.log(data);
   return (
     <div className={css.form}>
-      <h4>Оставьте данные для связи</h4>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           className={css.input}

@@ -14,6 +14,7 @@ import { Transition } from 'react-transition-group';
 import { Map, Placemark } from "react-yandex-maps";
 import ContactForm from '../../components/Forms/ContactForm';
 import PagesContext from '../../store';
+import ContactBlock from "../../components/ContactsBlock";
 
 const duration = 300;
 
@@ -28,36 +29,19 @@ const transitionStyles = {
 const Page = ({ page, slug }) => {
   const { settings } = useContext(PagesContext);
   const { title, body } = page;
-  console.log('CONRCTS');
   
   return (
     <Container className={css.inner}>
       <h1>{title}</h1>
       {body && parse(body)}
       <div className={css.content}>
-        <ContactForm />
-        <div className={css.contacts}>
-          <div className={css.contacts_item}>
-            <h3>Или свяжитесь с&nbsp;нами сами</h3>
-            <h4>Телефон</h4>
-            {settings.phones.split("\n").map((phone) => (
-              <a key={phone} href={`tel:${phone}`}>
-                {phone}
-              </a>
-            ))}
-          </div>
-          <div className={css.contacts_item}>
-            <h4>Адрес</h4>
-            <p>{settings.address}</p>
-          </div>
-          <div className={css.contacts_item}>
-            <h4>Email</h4>
-            <a href={`mailto:${settings.email}`}>{settings.email}</a>
-          </div>
-          <div className={css.contacts_item}>
-            <h4>Режим работы</h4>
-            <p>{settings.hours}</p>
-          </div>
+        <div className={css.item}>
+          <h3>Оставьте данные для связи</h3>
+          <ContactForm />
+        </div>
+        <div className={css.item}>
+          <h3>Или свяжитесь с&nbsp;нами сами</h3>
+          <ContactBlock />
         </div>
       </div>
       <h2>Мы на карте:</h2>
