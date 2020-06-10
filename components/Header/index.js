@@ -27,11 +27,11 @@ const Header = ({ isHomePage, categories, toggleMenu }) => (
     <Hamburger toggleMenu={toggleMenu} />
     <Container className={!isHomePage ? css.categories : css.home}>
         <div className={css.inner}>
-          <Link href="/">
-            <div className={css.icon}>
+          <Link href="/" as="/">
+            <a className={css.icon}>
               <Icon name="icon" />
               <Logo />
-            </div>
+            </a>
           </Link>
         </div>
        {categories.map(({ image, name, slug }, id) => (

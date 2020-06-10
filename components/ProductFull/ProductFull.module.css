@@ -196,6 +196,12 @@
     }
     .taxonormes {
         flex-wrap: wrap;
+        background-color: #f2f2f2;
+        margin: 0 -16px;
+        margin-top: 16px;
+        padding: 16px;
+        margin-bottom: -40px;
+        padding-bottom: 40px;
     }
     .back {
         font-size: 14px;
@@ -226,5 +232,12 @@
     }
     .back {
         margin-bottom: 12px;
+    }
+    .product {
+        font-size: 14px;
+    }
+    .content h2,.block h3 {
+        font-size: 14px;
+        margin-bottom: 4px;
     }
 }

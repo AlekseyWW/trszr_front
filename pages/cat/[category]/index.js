@@ -26,7 +26,6 @@ const transitionStyles = {
 const Category = ({ categories, cultures, cats, prods }) => {
   const router = useRouter();
   const [products, setProducts] = useState(prods.data);
-  const [openedFilter, setOpenedFilter] = useState(false);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(prods.meta ? prods.meta.current_page : 1);
   const fetchMoreProducts = async () => {
@@ -35,10 +34,6 @@ const Category = ({ categories, cultures, cats, prods }) => {
       );
       setProducts([...products, ...data.data]);
       setCurrentPage(data.meta.current_page);
-  }
-
-  const toggleFilter = () => {
-    setOpenedFilter(!openedFilter);
   }
 
   useEffect(() => {
@@ -55,49 +50,37 @@ const Category = ({ categories, cultures, cats, prods }) => {
 
   
   return (
-    <>
-      <Container className={css.container}>
-        <Filter lines={cultures} pictured={cats} />
-        <div className={css.grid}>
-          {!loading &&
-            products &&
-            products.map((product, id) => (
-              <ProductCard
-                key={`prod-${id}`}
-                {...product}
-                category={router.query.category}
-              />
-            ))}
+    <Container className={css.container}>
+      <Filter lines={cultures} pictured={cats} />
+      <div className={css.grid}>
+        {!loading &&
+          products &&
+          products.map((product, id) => (
+            <ProductCard
+              key={`prod-${id}`}
+              {...product}
+              category={router.query.category}
+            />
+          ))}
 
-          {loading && (
-            <>
-              <ProductCard loading/>
-              <ProductCard loading/>
-              <ProductCard loading/>
-              <ProductCard loading/>
-              <ProductCard loading/>
-              <ProductCard loading/>
-              <ProductCard loading/>
-              <ProductCard loading/>
-              <ProductCard loading/>
-            </>
-          )}
-        </div>
-        {(prods.meta && products.length > 0 &&  prods.meta.total > products.length) && <button onClick={fetchMoreProducts} className={css.more}>
-          Показать ещё
-        </button>}
-      </Container>
-      <ModalWrapper>
-        <div className={css.filter}>
-          <button onClick={toggleFilter} className={css.filter__button}><Icon className={css.filter__icon} name="filter" /></button>
-        </div>
-        <Transition in={openedFilter} timeout={duration}>
-          {(state) => <div className={cx(css.menu, transitionStyles[state])}>
-            <Filter lines={cultures} pictured={cats} />
-          </div>}
-        </Transition>
-      </ModalWrapper>
-    </>
+        {loading && (
+          <>
+            <ProductCard loading/>
+            <ProductCard loading/>
+            <ProductCard loading/>
+            <ProductCard loading/>
+            <ProductCard loading/>
+            <ProductCard loading/>
+            <ProductCard loading/>
+            <ProductCard loading/>
+            <ProductCard loading/>
+          </>
+        )}
+      </div>
+      {(prods.meta && products.length > 0 &&  prods.meta.total > products.length) && <button onClick={fetchMoreProducts} className={css.more}>
+        Показать ещё
+      </button>}
+    </Container>
   );
 };
 

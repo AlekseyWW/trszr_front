@@ -1,9 +1,11 @@
 .main {
+    overflow-x: hidden;
     position: relative;
     transform: translateX(0);
     transition: transform 0.35s ease-out;
     padding-top: 160px;
     padding-bottom: 40px;
+    /* background-color: #F2F2F2; */
 }
 .main.home {
     padding-bottom: 0;
@@ -48,5 +50,8 @@
 @media (max-width: 560px) { 
     .main {
         padding-top: 80px;
+    }
+    .main.home {
+        padding-bottom: 40px;
     }
 }

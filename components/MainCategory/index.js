@@ -17,7 +17,7 @@ const MainCategory = ({ image, name, slug, icon }) => (
         >
           {slug && <Icon name={camelize(slug)} className={styles.icon} />}
         </span>
-        <span className={styles.title}>{name}</span>
+        <span className={styles.title}><Icon name={camelize(slug)} className={styles.titleIcon} /><span>{name}</span></span>
       </span>
     </a>
   </Link>

@@ -20,6 +20,8 @@ const SimpleSwiper = ({ children, slidesPerView, ...props }) => {
       setIsEnd(swiper.isEnd);
       setIsBeginning(swiper.isBeginning);
       swiper.on("transitionEnd", function () {
+        console.log({ swiper});
+        
         setIsEnd(swiper.isEnd);
         setIsBeginning(swiper.isBeginning);
       });
@@ -40,7 +42,8 @@ const SimpleSwiper = ({ children, slidesPerView, ...props }) => {
   const params = {
     slidesPerView: "auto",
     slideClass: css.slide,
-    simulateTouch: false,
+    containerClass: css.container,
+    simulateTouch: true,
     ...props,
   };
 
