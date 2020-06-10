@@ -2,6 +2,7 @@ import parse from "html-react-parser";
 import css from './ProductFull.module.css';
 import Button from '../Button';
 import { useRouter } from "next/router";
+import cx from "classnames";
 import { useState } from 'react';
 import Link from "../Link";
 import Icon from "../Icon";
@@ -15,10 +16,7 @@ const ProductFull = ({ name, image, description, isServer, ...props }) => {
   const router = useRouter();
   return (
     <div className={css.product}>
-      <div className={css.view}>
-        <img src={`http://trszr.ru.test/${image}`} />
-      </div>
-      <div className={css.info}>
+      <div className={css.title}>
         <button
           className={css.back}
           onClick={
@@ -39,19 +37,36 @@ const ProductFull = ({ name, image, description, isServer, ...props }) => {
           </div>
           <span>Назад к списку</span>
         </button>
-        <h1>{name}</h1>
-        <img
-          className={css.image_mob}
-          src={`${process.env.api}/storage/${image}`}
-        />
-        {description && <div className={css.block}>
+        <h1>{name.split(",")[0]}</h1>
+        <p>{name.split(",")[1]}</p>
+      </div>
+
+      <div className={css.info}>
+        {description && <div className={cx(css.content)}>
+          <h2>{name.split(",")[0]}</h2>
           <p>{parse(description)}</p>
         </div>}
-        {props.consist && <div className={css.block}>
-          <h3>Состав: </h3>
-          <p>{parse(props.consist)}</p>
-        </div>}
+        
+      
+        {/* <div className={css.buttons}>
+          <div className={css.button}>
+            <ModalConsumer>
+              {({ showModal }) => (
+                <Button onClick={() => showModal(() => ModalForm)}>Оставить заявку</Button>
+              )}
+            </ModalConsumer>
+          </div>
+        </div> */}
+      </div>
+      {props.content && (
+        <div className={css.content}>{parse(props.content)}</div>
+      )}
+      <div className={css.taxonormes}>
         <div className={css.group}>
+          {props.consist && <div className={css.block}>
+            <h3>Состав: </h3>
+            <p>{parse(props.consist)}</p>
+          </div>}
           <div className={css.block}>
             <h3>Категория: </h3>
             <p>{props.category.name}</p>
@@ -69,24 +84,10 @@ const ProductFull = ({ name, image, description, isServer, ...props }) => {
             <p>{props.rate}</p>
           </div>
         </div>
-        <div className={css.buttons}>
-          <div className={css.button}>
-            <ModalConsumer>
-              {({ showModal }) => (
-                <Button onClick={() => showModal(() => ModalForm)}>Оставить заявку</Button>
-              )}
-            </ModalConsumer>
-          </div>
-          {props.content && !opened && (
-            <div className={css.button}>
-              <Button onClick={() => setOpened(true)}>Подробнее</Button>
-            </div>
-          )}
+        <div className={css.view}>
+          <img src={`http://trszr.ru.test/${image}`} />
         </div>
       </div>
-      {opened && props.content && (
-        <div className={css.content}>{parse(props.content)}</div>
-      )}
     </div>
   );
 };

@@ -25,19 +25,18 @@ export function camelize(str) {
 const Header = ({ isHomePage, categories, toggleMenu }) => (
   <header className={css.root}>
     <Hamburger toggleMenu={toggleMenu} />
-    <Container className={!isHomePage ? css.categories : ""}>
-      {isHomePage ? (
+    <Container className={!isHomePage ? css.categories : css.home}>
         <div className={css.inner}>
-          <div className={css.icon}>
-            <Icon name="icon" />
-            <Logo />
-          </div>
+          <Link href="/">
+            <div className={css.icon}>
+              <Icon name="icon" />
+              <Logo />
+            </div>
+          </Link>
         </div>
-      ) : (
-        categories.map(({ image, name, slug }, id) => (
+       {categories.map(({ image, name, slug }, id) => (
           <CategoryItem key={slug} name={name} slug={slug} />
-        ))
-      )}
+        ))}
     </Container>
     <SearchForm />
     {/* <Link href="/">

@@ -1,79 +1,77 @@
 .product {
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
+    position: relative;
+    max-width: 1137px;
+    margin: 0 auto;
+    font-size: 30px;
 }
 
 .view {
     display: block;
     position: relative;
     align-self: flex-start;
-    min-width: 50%;
+    min-width: 359px;
 }
-.image_mob {
-    display: none;
-}
-.view:before {
-    content: '';
-    padding-top: 100%;
-    display: block;
-    position: relative;
-}
+
 .view img {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-fit: cover;
 }
 .info {
     display: flex;
     flex-direction: column;
-    padding-left: 64px;
-    min-width: 50%;
-    width: 50%;
+    width: 100%;
+    margin: 0 auto;
 }
-.info h1 {
-    margin-bottom: 24px;
+.title {
+    text-align: right;
+}
+.title h1 {
+    margin-bottom: 4px;
+    font-size: 96px;
     font-weight: 900;
+    text-transform: uppercase;
+}
+.title p {
+    font-size: 48px;
+    text-transform: uppercase;
+    color: #94DB7B;
 }
 .info p {
-    font-size: 20px;
-    line-height: 1.4;
 }
 
 .block {
     display: block;
     margin-bottom: 32px;
+    margin-right: 42px;
+}
+.description p {
+    /* font-size: 28px; */
+    padding-left: 16px;
+    /* line-height: 1.2; */
 }
 .block:last-child {
     margin-bottom: 0;
 }
 .block h3 {
-    font-size: 24px;
-    margin: 0;
-    line-height: 1;
-    margin-bottom: 4px;
-    font-weight: 800;
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    text-transform: uppercase;
 }
 .group {
     display: flex;
+    flex-direction: column;
+    margin-right: 12px;
 }
 .group .block{
-    flex: 1;
-    padding-right: 12px;
-    margin-right: 12px;
-    border-right: 1px solid var(--yellow);
+    padding-right: 42px;
+    margin-bottom: 12px;
+    margin-right: 0;
+}
+
+.group .block:last-child{
     margin-bottom: 0;
-}
-.group .block h3{
-    font-weight: 700;
-    font-size: 14px;
-}
-.group .block p{
-    font-weight: 800;
-    font-size: 18px;
 }
 .buttons {
     padding-top: 32px;
@@ -86,13 +84,19 @@
 }
 
 .content {
-    padding-top: 70px;
-    font-size: 14px;
+    padding-top: 32px;
 }
 .content h2{
-    font-size: 32px;
-    font-weight: 800;
-    margin-bottom: 16px;
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+.content p {
+   padding-left: 16px;
+}
+.content p:not(:last-child){
+   margin-bottom: 32px;
 }
 .content table, .content td, .content th {
     border: 2px #808080 solid;
@@ -103,7 +107,9 @@
 }
 
 .back {
-    position: relative;
+    position: absolute;
+    left: 0;
+    top: 0;
     padding: 0;
     background: none;
     border: none;
@@ -112,19 +118,17 @@
     color: var(--green);
     font-weight: 700;
     padding: 8px 0;
-    margin-bottom: 6px;
-    height: 32px;
     outline: none;
     line-height: 1;
     align-self: flex-start;
     cursor: pointer;
+    padding-left: 42px;
 }
 .backIcon {
     position: absolute;
-    right: 100%;
+    left: 0;
     top: 50%;
     margin-top: -13px;
-    margin-right: 12px;
     height: 26px;
     width: 34px;
 }
@@ -145,32 +149,82 @@
     background-color: var(--green);
 }
 
-@media (max-width: 960px) { 
-    .view {
-        max-width: 300px;
-    }
+.taxonormes {
+    padding-top: 32px;
+    display: flex;
 }
+
+@media (max-width: 960px) { 
+    .product {
+        font-size: 16px;
+    }
+    .view {
+        order: 1;
+        max-width: 50%;
+        min-width: 0;
+        padding-right: 12px;
+    }
+    .group {
+        order: 2;
+        max-width: 50%;
+        margin-right: 0;
+
+
+    }
+    .title h1 {
+        font-size: 34px;
+    }
+    .title p {
+        font-size: 24px;
+        color: currentColor;
+    }
+    .content {
+        padding-top: 12px;
+    }
+    .content p {
+        padding-left: 8px;
+    }
+    .content p:not(:last-child) {
+        margin-bottom: 12px;
+    }
+    .content h2 {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+    .block h3 {
+        font-size: 18px;
+    }
+    .taxonormes {
+        flex-wrap: wrap;
+    }
+    .back {
+        font-size: 14px;
+        padding: 0;
+    }
+    .backIcon {
+        position: relative;
+        height: 22px;
+        margin-top: 0;
+        width: auto;
+    }
+    .back span {
+        display: none;
+    }
+
+}
+
+
 @media (max-width: 768px) { 
     .product {
         margin-top: 40px;
     }
-    .view {
-        display: none;
-    }
-    .image_mob {
-        display: block;
-        max-width: 100%;
-        max-height: 300px;
-        object-fit: cover;
-        margin-bottom: 12px;
-    }
+
 }
 @media (max-width: 514px) { 
     .info {
         padding-left: 0;
     }
     .back {
-        margin-left: 34px;
         margin-bottom: 12px;
     }
 }

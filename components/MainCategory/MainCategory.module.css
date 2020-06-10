@@ -76,6 +76,15 @@
     .wrapper {
         margin-top: 0;
     }
+    .inner {
+        padding: 0 16px;
+    }
+    .item {
+        margin-bottom: 18px;
+    }
+    .item:last-child {
+        margin-bottom: 0;
+    }
 }
 
 @media (max-width: 414px) {

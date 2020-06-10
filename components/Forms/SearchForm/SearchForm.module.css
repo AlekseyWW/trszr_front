@@ -69,3 +69,15 @@
     width: 100%;
     margin-bottom: 0;
 }
+
+@media (max-width: 560px) { 
+    .button {
+        padding: 12px;
+    }
+    .search {
+        width: 60px;
+    }
+    .form {
+        padding: 0 60px;
+    }
+}

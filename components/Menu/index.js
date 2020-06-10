@@ -41,7 +41,7 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
         <div className={cx(css.root, transitionStyles[state])}>
           <div className={css.inner} ref={el}>
             {/* <SearchForm className={css.search} /> */}
-            <ul className={css.list}>
+            <ul className={cx(css.list, css.list_page)}>
               {pages.filter(el => el.in_menu).map(({ title, slug }) => {
                 return (
                   <li key={slug}>
@@ -54,10 +54,10 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
                       prefetch={true}
                     >
                       <a className={cx(css.list__item, css.list__item_page)}>
-                        <span> {title} </span>
                         {slug && (
                           <Icon name={camelize(slug)} className={css.icon} />
                         )}
+                        <span> {title} </span>
                       </a>
                     </Link>
                   </li>
@@ -77,13 +77,13 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
                       prefetch={false}
                     >
                       <a className={css.list__item}>
-                        <span> {name} </span>
                         {slugParent && (
                           <Icon
                             name={camelize(slugParent)}
                             className={css.icon}
                           />
                         )}
+                        <span> {name} </span>
                       </a>
                     </Link>
                     <ul className={css.sublist}>
@@ -98,13 +98,13 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
                               prefetch={false}
                             >
                               <a className={css.list__item}>
-                                <span> {name} </span>
                                 {slug && (
                                   <Icon
                                     name={camelize(slug)}
                                     className={css.icon}
                                   />
                                 )}
+                                <span> {name} </span>
                               </a>
                             </Link>
                           </li>

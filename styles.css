@@ -28,12 +28,13 @@
 }
 
 * {
-  --yellow: #FFE711;
-  --green: #166C00;
-  --gray: #f2f2f2;
+  -webkit-font-smoothing: antialiased;
 }
 
 :root {
+  --yellow: #FFE711;
+  --green: #166C00;
+  --gray: #f2f2f2;
   --easeInSine: cubic-bezier(0.47, 0, 0.745, 0.715);
   --easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
   --easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);

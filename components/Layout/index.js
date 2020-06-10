@@ -29,7 +29,7 @@ const Layout = ({ children, title }) => {
         toggleMenu={toggleMenu}
         categories={categories}
       />
-      <main className={cx(css.main, isMenuOpen ? css.main_menu : '')}>
+      <main className={cx(css.main, isHomePage ? css.home : '', isMenuOpen ? css.main_menu : '')}>
         {children}
       </main>
       <Menu in={isMenuOpen} toggleMenu={toggleMenu} categories={categories} cultures={cultures} />

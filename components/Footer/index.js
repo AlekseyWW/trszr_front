@@ -15,95 +15,90 @@ const Footer = () => {
     
   return (
     <div className={css.root}>
-      <Container className={css.container}>
-       
-
-        <div className={css.column}>
-          <div className={css.sertificates}>
-            {sertificates.map((item) => (
-              <div className={css.sertificate}>
-                <img src={`${process.env.api}/storage/${item.image}`} />
-              </div>
-            ))}
-          </div>
-        </div>
-        <p className={css.logo}>
-          <Icon name="icon" /> <Icon name="logo" />
-        </p>
-        <div className={css.row}>
-          <div className={cx(css.column, css.flex)}>
-            <ul className={css.list}>
-              {pages.map(({ title, slug }) => {
-                return (
-                  <li key={slug}>
-                    <Link
-                      key={slug}
-                      href={
-                        defaultsPages.indexOf(slug) !== -1 ? slug : "/[slug]"
-                      }
-                      as={"/" + slug}
-                      activeClassName={css.list__item_active}
-                      prefetch={true}
-                    >
-                      <a className={cx(css.list__item, css.list__item_page)}>
-                        <span> {title} </span>
-                        {slug && (
-                          <Icon name={camelize(slug)} className={css.icon} />
-                        )}
-                      </a>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <ul className={cx(css.list, css.categories)}>
-              {categories.map(({ name, slug: slugParent, children }) => {
-                return (
-                  <li key={slugParent}>
-                    <Link
-                      key={slugParent}
-                      href="/cat/[category]"
-                      as={"/cat/" + slugParent}
-                      activeClassName={css.list__item_active}
-                      prefetch={false}
-                    >
-                      <a className={css.list__item}>
-                        <span> {name} </span>
-                      </a>
-                    </Link>
-                    <ul className={css.sublist}>
-                      {children.map(({ id, name, slug }) => {
-                        return (
-                          <li key={slug}>
-                            <Link
-                              href={`/cat/[category]?categories=${id}`}
-                              as={`/cat/${slugParent}?categories=${id}`}
-                              activeClassName={css.list__item_active}
-                              prefetch={false}
-                            >
-                              <a className={css.list__item}>
-                                <span> {name} </span>
-                              </a>
-                            </Link>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </li>
-                );
-              })}
-            </ul>
-            
-          </div>
-          <div className={css.column}>
-            <FooterForm />
-            <ContactBlock />
-          </div>
-        </div>
-            
-      </Container>
       <Container>
         <div className={css.row}>
+          <div className={cx(css.column, css.flex)}>
+            <div className={css.list}>
+              <a className={css.list__title}>
+                <span>Страницы сайта</span>
+              </a>
+              <ul className={css.sublist}>
+                {pages.map(({ title, slug }) => {
+                  return (
+                    <li key={slug}>
+                      <Link
+                        key={slug}
+                        href={
+                          defaultsPages.indexOf(slug) !== -1 ? slug : "/[slug]"
+                        }
+                        as={"/" + slug}
+                        activeClassName={css.list__item_active}
+                        prefetch={true}
+                      >
+                        <a className={cx(css.list__item, css.list__item_page)}>
+                          <span> {title} </span>
+                          {slug && (
+                            <Icon name={camelize(slug)} className={css.icon} />
+                          )}
+                        </a>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            {categories.map(({ name, slug: slugParent, children }) => {
+              return (
+                <div className={css.list}>
+                  <Link
+                    key={slugParent}
+                    href="/cat/[category]"
+                    as={"/cat/" + slugParent}
+                    activeClassName={css.list__title}
+                    prefetch={false}
+                  >
+                    <a className={css.list__title}>
+                      <span> {name} </span>
+                    </a>
+                  </Link>
+                  <ul className={css.sublist}>
+                    {children.map(({ id, name, slug }) => {
+                      return (
+                        <li key={slug}>
+                          <Link
+                            href={`/cat/[category]?categories=${id}`}
+                            as={`/cat/${slugParent}?categories=${id}`}
+                            activeClassName={css.list__item_active}
+                            prefetch={false}
+                          >
+                            <a className={css.list__item}>
+                              <span> {name} </span>
+                            </a>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+          <div className={css.column}>
+            <div className={css.list}>
+              <div className={css.list__title}>
+                <span className={css.logo}>Точка роста</span>
+                <span className={css.logo_note}>Урожай в полную силу</span>
+              </div>
+              <div className={css.sublist}>
+                <ContactBlock />
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </Container>
+      <Container>
+        <div className={css.copyright}>
           <p>Точка роста | 2020</p>
         </div>
       </Container>
