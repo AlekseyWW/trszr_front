@@ -10,14 +10,14 @@
     align-items: center;
     justify-content: center;
 }
-.root__button {
+.root__button, .root__button:active {
     display: block;
     width: 50px;
     height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: none;
+    background: none !important;
     border: none;
     padding: 8px;
     outline: none;
@@ -27,11 +27,11 @@
 }
 
 
-.root__button:hover .root__item:first-child {
+.root__button:hover .root__item:first-child, .root__button:active .root__item:first-child {
     transform: translateY(-2px);
     transition-duration: 175ms;
 }
-.root__button:hover .root__item:last-child {
+.root__button:hover .root__item:last-child, .root__button:active .root__item:last-child {
     transform: translateY(2px);
     transition-duration: 175ms;
 }

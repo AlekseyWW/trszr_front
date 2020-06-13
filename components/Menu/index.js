@@ -8,7 +8,7 @@ import Icon from '../Icon';
 import { camelize } from '../Header';
 import { useEffect, useRef, useContext } from "react";
 import PagesContext from '../../store';
-const duration = 300;
+const duration = 350;
 
 const defaultStyle = {
   transition: `transform ${duration}ms, opacity ${duration}ms ease-in-out`,
@@ -33,10 +33,9 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
       enableBodyScroll(el.current)
     }
   }, [inProp]);
-  console.log({pages});
   
   return (
-    <Transition in={inProp} timeout={duration}>
+    <Transition in={inProp} unmountOnExit timeout={!inProp ? duration : 0}>
       {(state) => (
         <div className={cx(css.root, transitionStyles[state])}>
           <div className={css.inner} ref={el}>

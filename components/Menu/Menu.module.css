@@ -32,9 +32,9 @@
     padding-top: 80px;
     height: 100%;
     overflow: scroll;
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: transform 350ms, opacity 350ms var(--easeInOutQuad);
+    /* opacity: 0; */
+    transform: translateX(-110%);
+    transition: transform 350ms var(--easeInOutQuad);
 }
 
 .close {
@@ -87,38 +87,26 @@
     pointer-events: none
 }
 
-.entering .inner {
-    opacity: 1;
-    transform: translateX(0);
-    transition-duration: 350ms;
-    transition-timing-function:  var(--easeOutSine);
-}
 .entered .inner {
     opacity: 1;
     transform: translateX(0);
-    transition-duration: 350ms;
-    transition-timing-function: var(--easeOutSine);
+    transition-duration: 500ms;
+    transition-timing-function: var(--easeOutExpo);
 }
 
-.entering.root:before{
+.entered.root:before {
     display: block;
     opacity: 0.6;
-    transition: opacity 350ms var(--easeOutSine);
-
-}
-.entered.root:before{
-    display: block;
-    opacity: 0.6;
-    transition: opacity 350ms var(--easeOutSine);
+    transition: opacity 500ms var(--easeOutExpo);
 
 }
 .exiting .inner {
-    opacity: 0;
-    transform: translateX(-100%);
+    /* opacity: 0; */
+    transform: translateX(-110%);
 }
 .exited .inner {
-    opacity: 0;
-    transform: translateX(-100%);
+    /* opacity: 0; */
+    transform: translateX(-110%);
 }
 
 

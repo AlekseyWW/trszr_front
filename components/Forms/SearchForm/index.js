@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import cx from "classnames";
 import { useInput } from "../../../hooks/input-hook";
 import Input from "../Input";
@@ -21,17 +21,24 @@ function SearchForm({ className }) {
 
   const openForm = () => {
     setIsOpen(!isOpen);
+    if (!isOpen && formRef.current) {
+      console.log({ formRef: formRef.current[0] });
+      formRef.current[0].focus();
+      console.log('FOCUSED');
+    }
   }
 
-  useEffect(() => {
-    if (formRef.current) {
-      console.log({ formRef: formRef.current[0]});
-      formRef.current[0].focus();
-    }
-  }, [isOpen, formRef]);
+  // useEffect(() => {
+  //   if (formRef.current) {
+  //     console.log({ formRef: formRef.current[0]});
+  //     setTimeout(() => {
+  //       formRef.current[0].focus();
+  //     });
+  //   }
+  // }, [isOpen, formRef]);
   
   return (<div className={cx(css.search, className)}>
-    {isOpen && <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className={css.form}>
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className={cx(css.form, isOpen ? css.open : css.close)}>
       <div className={css.inner}>
 
         <Input className={css.input} register={register} name="search" label="Поиск" />
@@ -39,7 +46,7 @@ function SearchForm({ className }) {
           <Icon name="search" />
         </button>
       </div>
-    </form>}
+    </form>
     <button onClick={openForm} type="button" value="Submit" className={css.button}>
       {isOpen ? <Icon name="close" /> : <Icon name="search" />}
     </button>

@@ -27,10 +27,6 @@
   font-style: normal;
 }
 
-* {
-  -webkit-font-smoothing: antialiased;
-}
-
 :root {
   --yellow: #FFE711;
   --green: #166C00;
@@ -75,6 +71,9 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+
 }
 
 main {

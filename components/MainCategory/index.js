@@ -13,11 +13,15 @@ const MainCategory = ({ image, name, slug, icon }) => (
       <span className={styles.inner}>
         <span
           className={styles.image}
-          style={{ backgroundImage: `url("${process.env.api}/storage/${image}")` }}
         >
+          <img src={`${process.env.api}/storage/${image}`} />
           {slug && <Icon name={camelize(slug)} className={styles.icon} />}
         </span>
-        <span className={styles.title}><Icon name={camelize(slug)} className={styles.titleIcon} /><span>{name}</span></span>
+        <span className={styles.title}>
+          <Icon name={camelize(slug)} className={styles.titleIcon} />
+          <span>{name}</span>
+          {/* <Icon name="back" className={styles.arrow} /> */}
+        </span>
       </span>
     </a>
   </Link>
