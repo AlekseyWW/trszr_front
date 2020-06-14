@@ -64,6 +64,8 @@ body {
   color: var(--green);
   background: var(--yellow);
   font-weight: 700;
+  font-size: 20px;
+  line-height: 1.4;
   font-family: Muller, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -74,6 +76,10 @@ body {
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
 
+}
+ul {
+  padding-left: 16px;
+  margin-bottom: 16px;
 }
 
 main {
@@ -90,10 +96,47 @@ a {
   color: currentColor;
 }
 
+
 h2 {
-    font-size: 48px;
-    font-weight: 800;
-    margin-bottom: 16px;
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    position: relative;
+}
+h2 + p {
+  padding-left: 16px;
+  position: relative;
+}
+
+blockquote {
+  position: relative;
+  padding: 40px 0 68px;
+  margin-bottom: 40px;
+}
+blockquote:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -50vw;
+  width: 100vw;
+  height: 100%;
+  background-color: var(--yellow);
+  z-index: -1;
+}
+blockquote>div::first-line {
+  font-weight: 900;
+  font-size: 28px;
+}
+blockquote>div {
+  text-align: right;
+  position: absolute;
+  bottom: 12px;
+  right: 0;
+  z-index: 1;
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
 h3 {
@@ -115,4 +158,13 @@ h5 {
 
 svg {
   fill: currentColor
+}
+
+@media (max-width: 560px) { 
+    h2 {
+      font-size: 24px;
+    }
+    body {
+      font-size: 16px;
+    }
 }

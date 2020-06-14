@@ -14,7 +14,7 @@ const defaultStyle = {
   transition: `transform ${duration}ms, opacity ${duration}ms ease-in-out`,
   opacity: 0,
 };
-export const defaultsPages = ["kontakty"];
+export const defaultsPages = ["kontakty", "about"];
 const transitionStyles = {
     entering: css.entering,
     entered: css.entered,
