@@ -8,6 +8,7 @@ import Icon from '../Icon';
 import { camelize } from '../Header';
 import { useEffect, useRef, useContext } from "react";
 import PagesContext from '../../store';
+import Hamburger from '../Hamburger';
 const duration = 350;
 
 const defaultStyle = {
@@ -20,6 +21,12 @@ const transitionStyles = {
     entered: css.entered,
     exiting: css.exiting,
     exited: css.exited,
+};
+const transitionHamburgerStyles = {
+    entering: css.h_entering,
+    entered: css.h_entered,
+    exiting: css.h_exiting,
+    exited: css.h_exited,
 };
 
 const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
@@ -34,7 +41,10 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
     }
   }, [inProp]);
   
-  return (
+  return (<>
+    <Transition in={inProp} timeout={!inProp ? duration : 0}>
+      {(state) => <Hamburger className={cx(css.hamburger, transitionHamburgerStyles[state])} toggleMenu={toggleMenu} isOpen={inProp} />}
+    </Transition>
     <Transition in={inProp} unmountOnExit timeout={!inProp ? duration : 0}>
       {(state) => (
         <div className={cx(css.root, transitionStyles[state])}>
@@ -50,7 +60,6 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
                       href={defaultsPages.indexOf(slug) !== -1 ? slug : "/[slug]"}
                       as={"/" + slug}
                       activeClassName={css.list__item_active}
-                      prefetch={true}
                     >
                       <a className={cx(css.list__item, css.list__item_page)}>
                         {slug && (
@@ -73,7 +82,6 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
                       href="/cat/[category]"
                       as={"/cat/" + slugParent}
                       activeClassName={css.list__item_active}
-                      prefetch={false}
                     >
                       <a className={css.list__item}>
                         {slugParent && (
@@ -94,7 +102,6 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
                               href={`/cat/[category]?categories=${id}`}
                               as={`/cat/${slugParent}?categories=${id}`}
                               activeClassName={css.list__item_active}
-                              prefetch={false}
                             >
                               <a className={css.list__item}>
                                 {slug && (
@@ -114,44 +121,10 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
                 );
               })}
             </ul>
-            {/* <ul className={css.list}>
-              <li>
-                <span className={css.list__item}>Культуры</span>
-                <ul className={css.sublist}>
-                  {cultures.map(({ name, slug, children }) => {
-                    return (
-                      <li key={name}>
-                        <Link
-                          onClick={toggleMenu}
-                          href="/cat/[category]"
-                          as={"/cat/" + slug}
-                          activeClassName={css.list__item_active}
-                          prefetch={false}
-                        >
-                          <a className={css.list__item}>
-                            <span> {name} </span>
-                            {slug && (
-                              <Icon
-                                name={camelize(slug)}
-                                className={css.icon}
-                              />
-                            )}
-                          </a>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </li>
-            </ul> */}
-            <button onClick={toggleMenu} className={css.close}>
-              <i></i>
-              <i></i>
-            </button>
           </div>
         </div>
       )}
     </Transition>
-  );};
+  </>);};
 
 export default Menu;

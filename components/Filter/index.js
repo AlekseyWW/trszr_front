@@ -71,6 +71,7 @@ const Filter = ({pictured, lines}) => {
     const [loading, setLoading] = useState(false);
     const { query, search } = router;
     const { category, ...params } = query;
+    
     const onChange = (e) => {
         const { name, value } = e.target
         const arr = params[name] ? params[name].split(",") : [];
@@ -85,7 +86,6 @@ const Filter = ({pictured, lines}) => {
             `/cat/${category}?${queryString.stringify(params)}`,
             { shallow: true }
         );
-            
     }
     const isActive = useCallback((id, name) => {
         return params[name] && params[name].split(",").indexOf(id.toString()) !== -1
@@ -106,7 +106,7 @@ const Filter = ({pictured, lines}) => {
       <div className={css.filter}>
         <div className={css.line}>
           {pictures.length > 0 && (
-            <SimpleSwiper>
+            <SimpleSwiper centerInsufficientSlides simulateTouch={false}>
               {pictures.map((item, id) => (
                 <div>
                   <FilterItemPicture

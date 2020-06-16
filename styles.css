@@ -96,9 +96,23 @@ a {
   color: currentColor;
 }
 
-
+h1 {
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    font-size: 72px;
+    margin-bottom: 24px;
+    text-align: right;
+}
 h2 {
     font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    position: relative;
+}
+h3 {
+    font-size: 24px;
     font-weight: 900;
     margin-bottom: 12px;
     text-transform: uppercase;
@@ -139,11 +153,6 @@ blockquote>div {
   font-size: 14px;
 }
 
-h3 {
-    font-size: 32px;
-    font-weight: 800;
-    margin-bottom: 16px;
-}
 h4 {
     font-size: 32px;
     font-weight: 800;
@@ -161,8 +170,14 @@ svg {
 }
 
 @media (max-width: 560px) { 
+    h1 {
+      font-size: 42px;
+    }
     h2 {
       font-size: 24px;
+    }
+    h3 {
+      font-size: 22px;
     }
     body {
       font-size: 16px;

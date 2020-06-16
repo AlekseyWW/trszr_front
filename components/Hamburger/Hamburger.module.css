@@ -1,11 +1,7 @@
 .root {
     display: block;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 90px;
+    position: fixed;
+    z-index: 101;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,22 +23,36 @@
 }
 
 
-.root__button:hover .root__item:first-child, .root__button:active .root__item:first-child {
-    transform: translateY(-2px);
+.root__button:active .root__item:first-child {
+    transform: translateY(10px);
     transition-duration: 175ms;
 }
-.root__button:hover .root__item:last-child, .root__button:active .root__item:last-child {
-    transform: translateY(2px);
+.root__button:active .root__item:last-child {
+    transform: translateY(-10px);
     transition-duration: 175ms;
 }
 
 .root__button_active .root__item:first-child, .root__button_active:hover .root__item:first-child {
-    transform: translateY(2px);
+    transform: translateY(10px);
     transition-duration: 175ms;
 
 }
 .root__button_active .root__item:last-child, .root__button_active:hover .root__item:last-child {
-    transform: translateY(-2px);
+    transform: translateY(-10px);
+    transition-duration: 175ms;
+}
+
+.root__button_open .root__item:first-child {
+    transform: translateY(10px) rotate(45deg);
+    transition-duration: 175ms;
+
+}
+.root__button_open .root__item:last-child {
+    transform: translateY(-10px) rotate(-45deg);
+    transition-duration: 175ms;
+}
+.root__button_open .root__item:nth-child(2) {
+    opacity: 0;
     transition-duration: 175ms;
 }
 
@@ -53,7 +63,8 @@
     flex-direction: column;
     background-color: currentColor;
     justify-content: space-between;
-    transition: transform 350ms
+    transition: transform 350ms var(--easeInOutQuad);
+    transform-origin: center;
 
 }
 

@@ -6,7 +6,6 @@ import Protect from "../../assets/zashitaRastenij.svg";
 import Seed from "../../assets/semena.svg";
 
 import css from './Header.module.css';
-import Hamburger from "../Hamburger";
 import Icon from "../Icon";
 import Link from "../Link";
 import Container from "../Container";
@@ -22,9 +21,8 @@ export function camelize(str) {
     .replace(/\s+/g, "")
     .replace("-", "");
 }
-const Header = ({ isHomePage, categories, toggleMenu }) => (
+const Header = ({ isHomePage, categories }) => (
   <header className={css.root}>
-    <Hamburger toggleMenu={toggleMenu} />
     <Container className={!isHomePage ? css.categories : css.home}>
         <div className={css.inner}>
           <Link href="/" as="/">

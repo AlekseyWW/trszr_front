@@ -4,10 +4,10 @@
     padding-bottom: 80px;
 }
 .inner h1{
-    font-weight: 800;
+    /* font-weight: 900;
     line-height: 1;
     font-size: 72px;
-    margin-bottom: 24px;
+    margin-bottom: 24px; */
 }
 .inner p {
     font-size: 18px;
@@ -42,5 +42,14 @@
     .inner p{
         font-size: 42px;
         font-size: 16px;
+    }
+    .content {
+        flex-direction: column;
+    }
+    .item:not(:first-child) {
+        padding-left: 0;
+        margin-left: 0;
+        border-left: none;
+        padding-top: 32px;
     }
 }

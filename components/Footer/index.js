@@ -33,7 +33,6 @@ const Footer = () => {
                         }
                         as={"/" + slug}
                         activeClassName={css.list__item_active}
-                        prefetch={true}
                       >
                         <a className={cx(css.list__item, css.list__item_page)}>
                           <span> {title} </span>
@@ -55,7 +54,6 @@ const Footer = () => {
                     href="/cat/[category]"
                     as={"/cat/" + slugParent}
                     activeClassName={css.list__title}
-                    prefetch={false}
                   >
                     <a className={css.list__title}>
                       <span> {name} </span>
@@ -69,7 +67,6 @@ const Footer = () => {
                             href={`/cat/[category]?categories=${id}`}
                             as={`/cat/${slugParent}?categories=${id}`}
                             activeClassName={css.list__item_active}
-                            prefetch={false}
                           >
                             <a className={css.list__item}>
                               <span> {name} </span>

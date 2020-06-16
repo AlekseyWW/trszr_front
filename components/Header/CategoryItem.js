@@ -11,7 +11,6 @@ const CategoryItem = ({ slug, name }) => {
         href="/cat/[category]"
         as={"/cat/" + slug}
         activeClassName={css.item_active}
-        prefetch={false}
         shallow
       >
         <div className={css.item}>

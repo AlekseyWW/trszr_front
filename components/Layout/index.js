@@ -25,6 +25,7 @@ const Layout = ({ children, title }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header
+        isOpen={isMenuOpen}
         isHomePage={isHomePage}
         toggleMenu={toggleMenu}
         categories={categories}

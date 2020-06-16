@@ -37,42 +37,6 @@
     transition: transform 350ms var(--easeInOutQuad);
 }
 
-.close {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 80px;
-    height: 80px;
-    background: none;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    color: currentColor;
-}
-.close i {
-    width: 50px;
-    height: 6px;
-    background-color: currentColor;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -1px;
-    margin-left: -25px;
-    transform: rotate(-45deg);
-    transition: transform 350ms var(--easeInOutQuad);
-    will-change: transform;
-}
-.close i:first-child {
-    transform: rotate(45deg);
-}
-.close:hover i {
-    transition-duration: 350ms;
-    transition-timing-function: var(--easeOutSine);
-    transform: rotate(-25deg);
-}
-.close:hover i:first-child {
-    transform: rotate(25deg);
-}
 
 .entering {
     pointer-events: initial
@@ -178,7 +142,46 @@
     padding: 16px;
 }
 
+.hamburger {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 80px;
+    transition: transform 350ms, color 350ms var(--easeInOutQuad);
+}
+
+
+.h_entering {
+    color: var(--yellow);
+    /* transform: translateX(400px); */
+    transition-duration: 500ms;
+    transition-timing-function: var(--easeOutExpo);
+}
+.h_entered {
+    color: var(--yellow);
+    transform: translateX(400px);
+    transition-duration: 500ms;
+    transition-timing-function: var(--easeOutExpo);
+}
+.h_exiting {
+}
+.h_exited {
+}
+
+
+
+@media (max-width: 1150px) {
+    .hamburger {
+        height: 60px;
+        width: 60px;
+    }
+}
+
 @media (max-width: 425px) {
+    .h_entered {
+        transform: translateX(260px);
+    }
     .inner {
         max-width: 320px;
         padding: 16px;
