@@ -3,7 +3,7 @@
     position: relative;
     transform: translateX(0);
     transition: transform 0.5s var(--easeInOutQuint);
-    padding-top: 160px;
+    padding-top: 120px;
     padding-bottom: 40px;
     /* background-color: #F2F2F2; */
 }
@@ -11,6 +11,10 @@
     padding-bottom: 0;
     height: 100vh;
     max-height: 100vh;
+}
+.main_kontakty {
+    background-color: var(--green);
+    color: var(--yellow);
 }
 .main_menu {
     transform: translateX(80px);

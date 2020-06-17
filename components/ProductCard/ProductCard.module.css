@@ -1,6 +1,9 @@
 .card {
     position: relative;
+    display: block;
     height: 200px;
+    background-color: var(--gray);
+
 }
 .image {
     width: 100%;
@@ -31,6 +34,7 @@
     background-color: var(--yellow);
     z-index: 1;
     padding: 8px;
+    min-height: 72px;
 }
 
 .dump .image {

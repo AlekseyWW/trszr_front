@@ -1,6 +1,15 @@
 
 @font-face {
   font-family: 'Muller';
+  src: local('Muller Regular'), local('Muller-Regular'),
+      url('./assets/fonts/MullerRegular.woff2') format('woff2'),
+      url('./assets/fonts/MullerRegular.woff') format('woff'),
+      url('./assets/fonts/MullerRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Muller';
   src: local('Muller Black'), local('Muller-Black'),
       url('./assets/fonts/MullerBlack.woff2') format('woff2'),
       url('./assets/fonts/MullerBlack.woff') format('woff'),
@@ -115,6 +124,7 @@ h3 {
     font-size: 24px;
     font-weight: 900;
     margin-bottom: 12px;
+    line-height: 1;
     text-transform: uppercase;
     position: relative;
 }

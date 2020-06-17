@@ -1,11 +1,12 @@
 import Link from "next/link";
+import cx from "classnames";
 
 import css from './ProductCard.module.css';
 
-const ProductCard = ({ name, image, slug, category, loading }) =>
+const ProductCard = ({ name, image, slug, category, loading, className }) =>
   !loading ? (
     <Link href="/cat/[category]/[product]" as={`/cat/${category}/${slug}`}>
-      <a className={css.card}>
+      <a className={cx(css.card, className && className)}>
         <img
           className={css.image}
           src={`${process.env.api}/storage/${image}`}

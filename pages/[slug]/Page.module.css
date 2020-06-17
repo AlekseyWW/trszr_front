@@ -20,15 +20,6 @@
     display: flex;
     margin-bottom: 60px;
 }
-.item {
-    width: 100%;
-}
-
-.item:not(:first-child) {
-    padding-left: 40px;
-    margin-left: 40px;
-    border-left: 2px solid var(--yellow);
-}
 
 .partners {
     display: flex;
@@ -77,6 +68,40 @@
 }
 .sertificates:last-child {
     margin-bottom: -40px;
+}
+
+.list {
+    padding-top: 40px;
+}
+.item {
+    width: 100%;
+    display: flex;
+    margin-bottom: 24px;
+    color: var(--yellow);
+    background-color: var(--green);
+}
+.item img {
+    width: 300px;
+    height: 100%;
+    object-fit: cover;
+}
+.item_title {
+    font-size: 36px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.item_content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+}
+.item_button {
+    display: block;
+    padding: 12px;
+    background-color: var(--yellow);
+    color: var(--green);
+    align-self: flex-end;
 }
 
 

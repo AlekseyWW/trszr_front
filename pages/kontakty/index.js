@@ -32,21 +32,22 @@ const Page = ({ page, slug }) => {
   
   return (
     <Container className={css.inner}>
-      <h1>{title}</h1>
+      <div className={css.title}>
+        <span className={css.logo}>Точка роста</span>
+        <span className={css.logo_note}>Урожай в полную силу</span>
+      </div>
       {body && parse(body)}
       <div className={css.content}>
-        <div className={css.item}>
-          <h3>Оставьте данные для связи</h3>
+        {/* <div className={css.item}>
           <ContactForm />
-        </div>
+        </div> */}
         <div className={css.item}>
-          <h3>Или свяжитесь с&nbsp;нами сами</h3>
           <ContactBlock />
         </div>
       </div>
-      <h2>Мы на карте:</h2>
       <Map
         width="100%"
+        className={css.map}
         defaultState={{ center: [47.251702, 39.764573], zoom: 14 }}
       >
         <Placemark

@@ -108,7 +108,7 @@ const Filter = ({pictured, lines}) => {
           {pictures.length > 0 && (
             <SimpleSwiper centerInsufficientSlides simulateTouch={false}>
               {pictures.map((item, id) => (
-                <div>
+                <div key={item.id}>
                   <FilterItemPicture
                     isActive={isActive(item.id, "categories")}
                     type="categories"
@@ -131,7 +131,7 @@ const Filter = ({pictured, lines}) => {
             {lines.length > 0 && (
               <SimpleSwiper slidesPerView={6} freeMode>
                 {lines.map((item, id) => (
-                  <div>
+                  <div key={item.id}>
                     <FilterItem
                       type="cultures"
                       isActive={isActive(item.id, "cultures")}

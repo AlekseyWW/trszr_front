@@ -18,37 +18,84 @@ const Footer = () => {
       <Container>
         <div className={css.row}>
           <div className={cx(css.column, css.flex)}>
-            <div className={css.list}>
-              <a className={css.list__title}>
-                <span>Страницы сайта</span>
-              </a>
-              <ul className={css.sublist}>
-                {pages.map(({ title, slug }) => {
-                  return (
-                    <li key={slug}>
-                      <Link
-                        key={slug}
-                        href={
-                          defaultsPages.indexOf(slug) !== -1 ? slug : "/[slug]"
-                        }
-                        as={"/" + slug}
-                        activeClassName={css.list__item_active}
-                      >
-                        <a className={cx(css.list__item, css.list__item_page)}>
-                          <span> {title} </span>
-                          {slug && (
-                            <Icon name={camelize(slug)} className={css.icon} />
-                          )}
-                        </a>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            {pages
+              .filter((el) => el.children.length)
+              .map((el) => (
+                <div key={el.slug} className={css.list}>
+                  <a className={css.list__title}>
+                    <span>{el.title}</span>
+                  </a>
+                  <ul className={css.sublist}>
+                    {el.children.map(({ title, slug }) => {
+                      return (
+                        <li key={slug}>
+                          <Link
+                            href={
+                              defaultsPages.indexOf(slug) !== -1
+                                ? slug
+                                : "/[slug]"
+                            }
+                            as={"/" + slug}
+                            activeClassName={css.list__item_active}
+                          >
+                            <a
+                              className={cx(
+                                css.list__item,
+                                css.list__item_page
+                              )}
+                            >
+                              <span> {title} </span>
+                              {slug && (
+                                <Icon
+                                  name={camelize(slug)}
+                                  className={css.icon}
+                                />
+                              )}
+                            </a>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                    <br></br>
+                    {pages
+                      .filter((el) => !el.children.length)
+                      .map(({ title, slug }) => {
+                        return (
+                          <li key={slug}>
+                            <Link
+                              key={slug}
+                              href={
+                                defaultsPages.indexOf(slug) !== -1
+                                  ? slug
+                                  : "/[slug]"
+                              }
+                              as={"/" + slug}
+                              activeClassName={css.list__item_active}
+                            >
+                              <a
+                                className={cx(
+                                  css.list__item,
+                                  css.list__item_page
+                                )}
+                              >
+                                <span> {title} </span>
+                                {slug && (
+                                  <Icon
+                                    name={camelize(slug)}
+                                    className={css.icon}
+                                  />
+                                )}
+                              </a>
+                            </Link>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                </div>
+              ))}
             {categories.map(({ name, slug: slugParent, children }) => {
               return (
-                <div className={css.list}>
+                <div key={slugParent} className={css.list}>
                   <Link
                     key={slugParent}
                     href="/cat/[category]"
@@ -87,10 +134,9 @@ const Footer = () => {
                 <span className={css.logo_note}>Урожай в полную силу</span>
               </div>
               <div className={css.sublist}>
-                <ContactBlock />
+                <ContactBlock className={css.contacts} />
               </div>
             </div>
-            
           </div>
         </div>
       </Container>

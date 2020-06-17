@@ -31,25 +31,57 @@
     border-left: 2px solid var(--yellow);
 }
 
+.title {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 900;
+    padding: 0 16px 16px;
+    margin-bottom: 40px;
+    width: 100%;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-bottom: 1px solid var(--yellow);
+}
+.logo {
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 900;
+    display: block;
+    text-align: right;
+}
+.logo_note {
+    display: block;
+    text-align: right;
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: none;
+}
+.logo svg {
+    fill: currentColor;
+}
+.logo svg:first-child {
+    margin-right: 8px;
+}
+
 
 @media (max-width: 768px) { 
     .inner {
-        padding-top: 40px;
-    }
-    .inner h1{
-        font-size: 42px;
-    }
-    .inner p{
-        font-size: 42px;
-        font-size: 16px;
+        padding-top: 0;
+        padding-bottom: 0;
     }
     .content {
-        flex-direction: column;
+        flex-direction: column-reverse;
+        margin-bottom: 24px;
     }
     .item:not(:first-child) {
         padding-left: 0;
         margin-left: 0;
         border-left: none;
         padding-top: 32px;
+    }
+    .map {
+        height: 160px;
     }
 }

@@ -12,7 +12,7 @@ import cx from "classnames";
 import Icon from '../../../components/Icon';
 import { Transition } from 'react-transition-group';
 import ModalWrapper from '../../../components/ModalWrapper';
-
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 const duration = 350;
 
 const transitionStyles = {
@@ -26,6 +26,7 @@ const transitionStyles = {
 const Category = ({ categories, cultures, cats, prods }) => {
   const router = useRouter();
   const [products, setProducts] = useState(prods.data);
+  const [curQuery, setCurQuery] = useState(router.query);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(prods.meta ? prods.meta.current_page : 1);
   const fetchMoreProducts = async () => {
@@ -37,32 +38,54 @@ const Category = ({ categories, cultures, cats, prods }) => {
   }
 
   useEffect(() => {
-    setLoading(true);
-    Axios.get(
-      `${process.env.api}/api/products?${queryString.stringify(router.query)}`
-    ).then(res => {
-      const { data } = res;
-      setProducts(data.data);
-      setCurrentPage(data.meta ? data.meta.current_page : 1);
-      setLoading(false);
-    });
+    console.log({ curQuery }, router.query, curQuery === router.query);
+    if (curQuery !== router.query) {
+      setLoading(true);
+      Axios.get(
+        `${process.env.api}/api/products?${queryString.stringify(router.query)}`
+      ).then(res => {
+        const { data } = res;
+        setProducts(data.data);
+        setCurQuery(router.query);
+        setCurrentPage(data.meta ? data.meta.current_page : 1);
+        setLoading(false);
+      });
+    }
   }, [router.query]);
 
   
   return (
     <Container className={css.container}>
       <Filter lines={cultures} pictured={cats} />
-      <div className={css.grid}>
-        {!loading &&
-          products &&
-          products.map((product, id) => (
-            <ProductCard
-              key={`prod-${id}`}
-              {...product}
-              category={router.query.category}
-            />
-          ))}
-
+      <TransitionGroup className={css.grid}>
+        {products.map((product, id) => (
+          <CSSTransition
+            key={product.id}
+            timeout={175}
+            className={css.item}
+            classNames={{
+              appear: css.item_appear,
+              appearActive: css.item_active_appear,
+              appearDone: css.item_done_appear,
+              enter: css.item_enter,
+              enterActive: css.item_active_enter,
+              enterDone: css.item_done_enter,
+              exit: css.item_exit,
+              exitActive: css.item_active_exit,
+              exitDone: css.item_done_exit,
+            }}
+          >
+            <li>
+              <ProductCard
+                // loading={loading}
+                {...product}
+                category={router.query.category}
+              />
+            </li>
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
+      {/* 
         {loading && (
           <>
             <ProductCard loading/>
@@ -75,11 +98,12 @@ const Category = ({ categories, cultures, cats, prods }) => {
             <ProductCard loading/>
             <ProductCard loading/>
           </>
-        )}
-      </div>
-      {(prods.meta && products.length > 0 &&  prods.meta.total > products.length) && <button onClick={fetchMoreProducts} className={css.more}>
-        Показать ещё
-      </button>}
+        )} */}
+      {prods.meta && products.length > 0 && prods.meta.total > products.length && (
+        <button onClick={fetchMoreProducts} className={css.more}>
+          Показать ещё
+        </button>
+      )}
     </Container>
   );
 };

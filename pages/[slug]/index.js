@@ -14,6 +14,8 @@ import { Transition } from 'react-transition-group';
 import { Map, Placemark } from "react-yandex-maps";
 import ContactForm from '../../components/Forms/ContactForm';
 import PagesContext from '../../store';
+import Link from "../../components/Link";
+import Button from "../../components/Button";
 
 const duration = 300;
 
@@ -27,11 +29,28 @@ const transitionStyles = {
 
 const Page = ({ page, slug }) => {
   const { settings } = useContext(PagesContext);
-  const { title, body } = page;
+  const { title, body, children } = page;
+  
   return (
     <Container className={css.inner}>
       <h1>{title}</h1>
       {body && parse(body)}
+      {children && (
+        <div className={css.list}>
+          {children.map((item) => (
+            <article key={item.slug} className={css.item}>
+              {item.image && <img src={`${process.env.api}/storage/${item.image}`} />}
+              <div className={css.item_content}>
+                <h3 className={css.item_title}>{item.title}</h3>
+                <p className={css.item_description}>{item.description}</p>
+                <Link key={item.slug} href="/[slug]" as={"/" + item.slug}>
+                  <a className={css.item_button}>Подробнее</a>
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
     </Container>
   );
 };

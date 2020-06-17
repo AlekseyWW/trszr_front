@@ -1,5 +1,6 @@
 import Logo from "../../assets/logo.svg";
 import { useRouter } from "next/router";
+import cx from "classnames";
 
 import Fertilizer from "../../assets/udobreniya.svg";
 import Protect from "../../assets/zashitaRastenij.svg";
@@ -22,20 +23,20 @@ export function camelize(str) {
     .replace("-", "");
 }
 const Header = ({ isHomePage, categories }) => (
-  <header className={css.root}>
-    <Container className={!isHomePage ? css.categories : css.home}>
-        <div className={css.inner}>
-          <Link href="/" as="/">
-            <a className={css.icon}>
-              <Icon name="icon" />
-              <Logo />
-            </a>
-          </Link>
-        </div>
-       {categories.map(({ image, name, slug }, id) => (
-          <CategoryItem key={slug} name={name} slug={slug} />
-        ))}
-    </Container>
+  <header className={cx(css.root, isHomePage ? css.root_home : '')}>
+    <div className={!isHomePage ? css.categories : css.home}>
+      <div className={css.inner}>
+        <Link href="/" as="/">
+          <a className={css.icon}>
+            <Icon name="icon" />
+            <Logo />
+          </a>
+        </Link>
+      </div>
+      {categories.map(({ image, name, slug }, id) => (
+        <CategoryItem key={slug} name={name} slug={slug} />
+      ))}
+    </div>
     <SearchForm />
     {/* <Link href="/">
       {!isHomePage ? (

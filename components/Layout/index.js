@@ -13,30 +13,45 @@ const Layout = ({ children, title }) => {
   const { categories, cultures } = useContext(PagesContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isHomePage = router.pathname === "/";
+  const isKontaktPage = router.pathname === "/kontakty";
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   }
   
-  return (<>
-    <div className={css.container}>
-      <Head>
-        <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header
-        isOpen={isMenuOpen}
-        isHomePage={isHomePage}
-        toggleMenu={toggleMenu}
-        categories={categories}
-      />
-      <main className={cx(css.main, isHomePage ? css.home : '', isMenuOpen ? css.main_menu : '')}>
-        {children}
-      </main>
-      <Menu in={isMenuOpen} toggleMenu={toggleMenu} categories={categories} cultures={cultures} />
-    </div>
-    <Footer />
-  </>);
+  return (
+    <>
+      <div className={css.container}>
+        <Head>
+          <title>{title || ''}</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <Header
+          isOpen={isMenuOpen}
+          isHomePage={isHomePage || isKontaktPage}
+          toggleMenu={toggleMenu}
+          categories={categories}
+        />
+        <main
+          className={cx(
+            css.main,
+            isHomePage ? css.home : "",
+            isMenuOpen ? css.main_menu : "",
+            { [css.main_kontakty]: isKontaktPage }
+          )}
+        >
+          {children}
+        </main>
+        <Menu
+          in={isMenuOpen}
+          toggleMenu={toggleMenu}
+          categories={categories}
+          cultures={cultures}
+        />
+      </div>
+      <Footer />
+    </>
+  );
 };
 
 export default Layout;
