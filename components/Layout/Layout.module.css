@@ -3,14 +3,15 @@
     position: relative;
     transform: translateX(0);
     transition: transform 0.5s var(--easeInOutQuint);
-    padding-top: 120px;
+    padding-top: 160px;
     padding-bottom: 40px;
     /* background-color: #F2F2F2; */
 }
 .main.home {
+    padding-top: 120px;
+
     padding-bottom: 0;
     height: 100vh;
-    max-height: 100vh;
 }
 .main_kontakty {
     background-color: var(--green);
@@ -23,7 +24,7 @@
 }
 .container {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -58,6 +59,8 @@
         padding-top: 80px;
     }
     .main.home {
+        min-height: calc(100vh - 100px);
+        height: calc(100vh - 100px);
         padding-bottom: 40px;
     }
 }
