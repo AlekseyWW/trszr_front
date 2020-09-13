@@ -3,7 +3,7 @@
     position: relative;
     max-width: 1137px;
     margin: 0 auto;
-    font-size: 30px;
+    font-size: 18px;
 }
 
 .view {
@@ -28,12 +28,12 @@
 }
 .title h1 {
     margin-bottom: 4px;
-    font-size: 96px;
+    font-size: 62px;
     font-weight: 900;
     text-transform: uppercase;
 }
 .title p {
-    font-size: 48px;
+    font-size: 22px;
     text-transform: uppercase;
     color: #94DB7B;
 }
@@ -54,7 +54,8 @@
     margin-bottom: 0;
 }
 .block h3 {
-    font-size: 36px;
+    font-size: 28px;
+    line-height: 1;
     font-weight: 900;
     margin-bottom: 12px;
     text-transform: uppercase;
@@ -66,7 +67,7 @@
 }
 .group .block{
     padding-right: 42px;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
     margin-right: 0;
 }
 
@@ -87,7 +88,8 @@
     padding-top: 32px;
 }
 .content h2{
-    font-size: 36px;
+    font-size: 32px;
+    line-height: 1;
     font-weight: 900;
     margin-bottom: 12px;
     text-transform: uppercase;

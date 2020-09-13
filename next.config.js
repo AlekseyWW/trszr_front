@@ -11,7 +11,7 @@ module.exports = (phase) =>
       api:
         PHASE_PRODUCTION_BUILD === phase
           ? "http://89.111.132.105:8080"
-          : "http://trszr.ru.test",
+          : "http://localhost:8091/",
       prdod: phase,
     },
     include: path.resolve(__dirname, "assets"),

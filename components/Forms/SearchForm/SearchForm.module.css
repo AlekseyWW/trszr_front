@@ -34,8 +34,9 @@
 }
 
 .submit {
+    cursor: pointer;
     position: absolute;
-    right: 0;
+    right: 16px;
     top: 0;
     background: none;
     border: none;
@@ -58,12 +59,30 @@
     height: 100%;
     right: 50vw;
     margin-right: -50vw;
-    top: 0;
-    background-color:var(--yellow);
+    top: 100%;
+    background-color: var(--gray);
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0 90px;
+    justify-content: flex-end;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+}
+.form:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: 0;
+    width: 90px;
+    height: 100%;
+    background-color: var(--gray);
+}
+.form:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90px;
+    height: 100%;
+    background-color: var(--gray);
 }
 .form.open {
     opacity: 1;

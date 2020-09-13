@@ -3,7 +3,6 @@
     position: relative;
     font-size: 24px;
     color: currentColor;
-    margin-bottom: 24px;
     padding-top: 20px;
 }
 .input:last-child {
@@ -43,6 +42,6 @@
     line-height: 1.2;
 }
 
-.value + .label, .field:focus + .label {
+.field:valid + .label, .field:focus + .label {
     transform: translateY(0) scale(0.7);
 }

@@ -4,19 +4,20 @@ import { useInput } from "../../../hooks/input-hook";
 import css from './Input.module.css'
 
 const Input = ({ name, label, register, className, ...props }) => {
-  const { value, bind, reset } = useInput("");
-  console.log({props});
+  // const { value, bind, reset } = useInput("");
   
   return (
     <div className={cx(css.input, className)}>
       <input
         className={cx(css.field, {
-          [css.value]: !!value,
+          // [css.value]: !!value,
         })}
         name={name}
         type="text"
-        {...bind}
+        // {...bind}
         ref={register}
+        // value={value}
+        required
       />
       <label className={css.label}>{label}</label>
     </div>

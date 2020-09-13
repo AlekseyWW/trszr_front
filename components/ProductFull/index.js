@@ -38,7 +38,7 @@ const ProductFull = ({ name, image, description, isServer, ...props }) => {
           <span>Назад к списку</span>
         </button>
         <h1>{name.split(",")[0]}</h1>
-        <p>{name.split(",")[1]}</p>
+        <p>{props.substance || name.split(",")[1]}</p>
       </div>
 
       <div className={css.info}>

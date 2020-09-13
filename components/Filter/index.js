@@ -44,6 +44,7 @@ const SimpleSwiper = ({ children, slidesPerView, ...props }) => {
     slideClass: css.slide,
     containerClass: css.container,
     simulateTouch: true,
+    shouldSwiperUpdate: true,
     ...props,
   };
 

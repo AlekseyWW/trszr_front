@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import css from './Modal.module.css'
+import Icon from "../Icon";
 const ModalContext = React.createContext();
 export const ModalConsumer = ModalContext.Consumer;
 
@@ -33,7 +34,7 @@ const Modal = (props) => {
           <div className={css.modal}>
             <div className={css.overlay} onClick={hideModal}></div>
             <div className={css.content}>
-                <button className={css.close} onClick={hideModal}>Закрыть</button>
+                <button className={css.close} onClick={hideModal}><Icon name="close" /></button>
                 <Content />
             </div>
           </div>

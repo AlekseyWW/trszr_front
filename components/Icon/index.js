@@ -20,7 +20,7 @@ const icons = {
 };
 const Icon = ({ name, className }) => {
     const IconComp = icons[name];
-    return IconComp ? <IconComp className={className} /> : '';
+    return IconComp ? <IconComp className={className} /> : null;
 };
 
 export default Icon;

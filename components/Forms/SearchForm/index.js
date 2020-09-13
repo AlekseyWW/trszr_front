@@ -12,11 +12,13 @@ function SearchForm({ className }) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false);
   const formRef = useRef('');
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, watch, setValue, errors } = useForm();
 
-  const onSubmit = async ({search}) => {
+  const onSubmit = ({search}) => {
     router.push(`/search?search=${search}`)
     setIsOpen(false);
+    setValue("search", "")
+    formRef.current[0].blur();
   }
 
   const openForm = () => {
@@ -24,7 +26,6 @@ function SearchForm({ className }) {
     if (!isOpen && formRef.current) {
       console.log({ formRef: formRef.current[0] });
       formRef.current[0].focus();
-      console.log('FOCUSED');
     }
   }
 

@@ -23,7 +23,7 @@ export default function MyApp({ Component, pageProps, globalProps, isServer }) {
 
 MyApp.getInitialProps = async (appContext) => {
     const appProps = await App.getInitialProps(appContext);
-
+    console.log({api: process.env.api});
     const { data: categories } = await Axios.get(
         `${process.env.api}/api/categories?main=true`
     );
