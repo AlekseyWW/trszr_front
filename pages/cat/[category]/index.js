@@ -53,10 +53,10 @@ const Category = ({ categories, cultures, cats, prods }) => {
     }
   }, [router.query]);
 
-  
+  console.log({query: router.query});
   return (
     <Container className={css.container}>
-      <Filter lines={cultures} pictured={cats} />
+      <Filter lines={curQuery.category === 'sem' ? [] : cultures} pictured={cats} />
       <TransitionGroup className={css.grid}>
         {products.map((product, id) => (
           <CSSTransition

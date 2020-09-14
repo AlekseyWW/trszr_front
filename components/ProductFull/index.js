@@ -14,6 +14,7 @@ import ModalForm from "../Forms/ModalForm";
 const ProductFull = ({ name, image, description, isServer, ...props }) => {
   const [ opened, setOpened ] = useState(false);
   const router = useRouter();
+  const currentImage = image || props.manufacturer.image;
   return (
     <div className={css.product}>
       <div className={css.title}>
@@ -84,9 +85,9 @@ const ProductFull = ({ name, image, description, isServer, ...props }) => {
             <p>{props.rate}</p>
           </div>
         </div>
-        <div className={css.view}>
-          <img src={`http://trszr.ru.test/${image}`} />
-        </div>
+        {currentImage && <div className={css.view}>
+          <img src={`${process.env.api}/storage/${currentImage}`} />
+        </div>}
       </div>
     </div>
   );
