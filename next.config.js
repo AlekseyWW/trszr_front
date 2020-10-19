@@ -10,8 +10,8 @@ module.exports = (phase) =>
     env: {
       api:
         PHASE_PRODUCTION_BUILD === phase
-          ? "http://89.111.132.105:8091"
-          : "http://localhost:8091/",
+          ? "http://trszr.ru/api"
+          : "http://localhost:8000",
       prdod: phase,
     },
     include: path.resolve(__dirname, "assets"),

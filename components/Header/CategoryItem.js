@@ -10,6 +10,7 @@ const CategoryItem = ({ slug, name }) => {
       <Link
         href="/cat/[category]"
         as={"/cat/" + slug}
+        slug={slug}
         activeClassName={css.item_active}
         shallow
       >

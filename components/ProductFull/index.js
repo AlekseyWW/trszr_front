@@ -72,18 +72,18 @@ const ProductFull = ({ name, image, description, isServer, ...props }) => {
             <h3>Категория: </h3>
             <p>{props.category.name}</p>
           </div>
-          <div className={css.block}>
+          {props.manufacturer && <div className={css.block}>
             <h3>Производитель: </h3>
             <p>{props.manufacturer}</p>
-          </div>
-          <div className={css.block}>
+          </div>}
+          {props.packing && <div className={css.block}>
             <h3>Фасовка: </h3>
             <p>{props.packing}</p>
-          </div>
-          <div className={css.block}>
+          </div>}
+          {props.rate && <div className={css.block}>
             <h3>Расход: </h3>
             <p>{props.rate}</p>
-          </div>
+          </div>}
         </div>
         {currentImage && <div className={css.view}>
           <img src={`${process.env.api}/storage/${currentImage}`} />
