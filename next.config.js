@@ -10,7 +10,7 @@ module.exports = (phase) =>
     env: {
       api:
         PHASE_PRODUCTION_BUILD === phase
-          ? "http://trszr.ru/api"
+          ? "http://trszr.ru"
           : "http://localhost:8000",
       prdod: phase,
     },
