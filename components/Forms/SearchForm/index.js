@@ -48,8 +48,8 @@ function SearchForm({ className }) {
         </button>
       </div>
     </form>
-    <button onClick={openForm} type="button" value="Submit" className={css.button}>
-      {isOpen ? <Icon name="close" /> : <Icon name="search" />}
+    <button onClick={openForm} type="button" value="Submit" className={cx(css.button, isOpen ? css.open : css.close )}>
+      <Icon name="close" />
     </button>
   </div>);
 }

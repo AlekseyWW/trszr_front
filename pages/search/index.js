@@ -38,14 +38,14 @@ const Search = ({ result, searchText }) => {
     setActiveType(isOpen(type, id) ? '' : type);
     setActiveId(isOpen(type, id) ? '' : id);
   }
-  console.log({result: result.substance});
+  console.log({result: result.manufacturers});
   return (
     <Container className={css.inner}>
       <h1>Поиск</h1>
       <p>Результат поиска по тексту: <b>{searchText}</b></p>
       <div>
         {result && <div>
-          <div className={css.block}>
+          {result.products.length > 0 && <div className={css.block}>
             <h3>Товары:</h3>
 
             <div className={css.grid}>
@@ -55,7 +55,7 @@ const Search = ({ result, searchText }) => {
                   category={product.category.parent.slug}
                 />)}
             </div>
-          </div>
+          </div>}
           {result.categories.length > 0 && <div className={css.block}>
             <h3>Категории:</h3>
             {result.categories.map(category => category.products.length > 0 && <div className={css.item}>
