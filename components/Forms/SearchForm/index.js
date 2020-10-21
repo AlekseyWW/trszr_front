@@ -38,7 +38,7 @@ function SearchForm({ className }) {
   //   }
   // }, [isOpen, formRef]);
   
-  return (<div className={cx(css.search, className)}>
+  return (<>
     <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className={cx(css.form, isOpen ? css.open : css.close)}>
       <div className={css.inner}>
 
@@ -48,10 +48,12 @@ function SearchForm({ className }) {
         </button>
       </div>
     </form>
-    <button onClick={openForm} type="button" value="Submit" className={cx(css.button, isOpen ? css.open : css.close )}>
-      <Icon name="close" />
-    </button>
-  </div>);
+    <div className={cx(css.search, className)}>
+      <button onClick={openForm} type="button" value="Submit" className={css.button}>
+        {isOpen ? <Icon name="close" /> : <Icon name="search" />}
+      </button>
+    </div>
+  </>);
 }
 
 export default SearchForm;
