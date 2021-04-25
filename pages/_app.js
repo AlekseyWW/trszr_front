@@ -39,9 +39,10 @@ MyApp.getInitialProps = async (appContext) => {
     const appProps = await App.getInitialProps(appContext);
     let globalProps = siteProps.getData();
     if (!globalProps) {
-      const { data: categories } = await Axios.get(
+      const { data: { categories } } = await Axios.get(
           `${process.env.api}/api/categories?main=true`
       );
+
       const { data: pages } = await Axios.get(
           `${process.env.api}/api/pages`
       );
@@ -55,7 +56,7 @@ MyApp.getInitialProps = async (appContext) => {
         settingsObject[item.key.split('.')[1]] = item.value;
       })
       globalProps = {
-        categories: categories.data,
+        categories: categories,
         cultures: cultures.data,
         pages: pages.data,
         settings: settingsObject,

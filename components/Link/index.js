@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 export default ({ href, as, children, onClick, activeClassName, onActive, onBlur, slug, ...props }) => {
   const router = useRouter();
 
-  const [className, setClassName] = useState(children.props.className || "");
+  const [className, setClassName] = useState(children.props ? children.props.className || "" : '');
   
   useEffect(() => {
     if (router.asPath.split("?")[0] === as || (router.query.category  && router.query.category === slug)) {

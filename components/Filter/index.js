@@ -66,9 +66,10 @@ const SimpleSwiper = ({ children, slidesPerView, ...props }) => {
   );
 };
 
-const Filter = ({pictured, lines}) => {
+const Filter = ({pictured, price: p, lines}) => {
     const router = useRouter();
     const [pictures, setPictures] = useState(pictured);
+    const [price, setPrice] = useState(p);
     const [loading, setLoading] = useState(false);
     const { query, search } = router;
     const { category, ...params } = query;
@@ -97,14 +98,16 @@ const Filter = ({pictured, lines}) => {
       Axios.get(
         `${process.env.api}/api/categories?${queryString.stringify({ category: query.category})}`
       ).then(res => {
-        const { data } = res;
-        setPictures(data.data);
+        const { data: { categories, price } } = res;
+        setPictures(categories);
+        setPrice(price);
         setLoading(false);
       });
     }, [query.category]);
-    
+    console.log({price: price ? JSON.parse(price): ''});
     return (
       <div className={css.filter}>
+        {price && <a href={process.env.api + '/storage/' + JSON.parse(price)[0].download_link} download>Скачать прайс</a>}
         <div className={css.line}>
           {pictures.length > 0 && (
             <SimpleSwiper centerInsufficientSlides simulateTouch={false}>

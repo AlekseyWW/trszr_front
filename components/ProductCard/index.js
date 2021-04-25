@@ -10,7 +10,7 @@ const ProductCard = ({ name, image, slug, category, manufacturer, loading, class
         <span className={css.media}>
           {image ? <img
             className={css.image}
-            src={`${process.env.api}/storage/${image}`}
+            src={`${process.env.api}/images/products/${image}`}
           /> : manufacturer ? <span className={css.manufacturer}>{manufacturer.name || manufacturer}</span>: null}
         </span>
         <span className={css.name}>

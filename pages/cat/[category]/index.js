@@ -23,7 +23,7 @@ const transitionStyles = {
 };
 
 
-const Category = ({ categories, cultures, cats, prods }) => {
+const Category = ({ categories, cultures, cats, prods, price }) => {
   const router = useRouter();
   const [products, setProducts] = useState(prods.data);
   const [curQuery, setCurQuery] = useState(router.query);
@@ -38,7 +38,6 @@ const Category = ({ categories, cultures, cats, prods }) => {
   }
 
   useEffect(() => {
-    console.log({ curQuery }, router.query, curQuery === router.query);
     if (curQuery !== router.query) {
       setLoading(true);
       Axios.get(
@@ -53,10 +52,9 @@ const Category = ({ categories, cultures, cats, prods }) => {
     }
   }, [router.query]);
 
-  console.log({query: router.query});
   return (
     <Container className={css.container}>
-      <Filter lines={curQuery.category === 'sem' ? [] : cultures} pictured={cats} />
+      <Filter lines={curQuery.category === 'sem' ? [] : cultures} pictured={cats || []} />
       <TransitionGroup className={css.grid}>
         {products.map((product, id) => (
           <CSSTransition
@@ -109,14 +107,13 @@ const Category = ({ categories, cultures, cats, prods }) => {
 };
 
 Category.getInitialProps = async({query}) => {
-  const { category: slug, categories, cultures } = query;
-  const { data } = await Axios.get( `${process.env.api}/api/categories?${queryString.stringify(query)}` );
+  const { data: { categories: cats, price } } = await Axios.get( `${process.env.api}/api/categories?${queryString.stringify(query)}` );
   const { data: products } = await Axios.get(
     `${process.env.api}/api/products?${queryString.stringify(query)}`
   );
-  
   return {
-    cats: data.data,
+    cats: cats,
+    price: price,
     prods: products
   };
 };
