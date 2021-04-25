@@ -55,26 +55,26 @@
 
 @media (min-width: 961px) and (max-width: 1150px) {
 	.item:hover::before {
-		transform: translateY(15px) scaleX(3) scaleY(0.5);
+		transform: scaleX(3) scaleY(0.5);
 	}
 	.item:hover::after {
-		transform: scaleY(1.25);
+		/* transform: scaleY(1.25); */
 	}
 	.item:hover .inner {
-		transform: translateY(5px);
+		/* transform: trans	lateY(5px); */
 	}
 
 	.item_active::before,
 	.item_active:hover::before {
-		transform: translateY(30px) scaleX(3.6) scaleY(0.2);
+		transform: scaleX(3.6) scaleY(0.2);
 	}
 	.item_active::after,
 	.item_active:hover::after {
-		transform: scaleY(1.5);
+		/* transform: scaleY(1.5); */
 	}
 	.item_active .inner,
 	.item_active:hover .inner {
-		transform: translateY(15px);
+		/* transform: translateY(15px); */
 	}
 }
 

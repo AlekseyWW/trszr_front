@@ -34,8 +34,13 @@ const Page = ({ page, slug }) => {
   return (
     <Container className={css.inner}>
       <Link
-        href={children.length ? '/' : '/uslugi'}
-        as={children.length ? "/" : '/uslugi'}><a>Назад</a></Link>
+        href={children.length ? '/' : '/[slug]'}
+        as={children.length ? "/" : '/uslugi'}>
+          <a className={css.back}>
+            <Icon name="back" />
+            <span>Назад</span>
+          </a>
+      </Link>
       <h1>{title}</h1>
       {body && parse(body)}
       {children && (

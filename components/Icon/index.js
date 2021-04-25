@@ -7,6 +7,7 @@ import search from "../../assets/search.svg";
 import back from "../../assets/back.svg";
 import filter from "../../assets/filter.svg";
 import close from "../../assets/close.svg";
+import download from "../../assets/download.svg";
 const icons = {
   udobreniya,
   zashitaRastenij,
@@ -16,6 +17,7 @@ const icons = {
   back,
   filter,
   close,
+  download,
   icon,
 };
 const Icon = ({ name, className }) => {

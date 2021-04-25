@@ -10,6 +10,15 @@
     margin-bottom: 24px;
     text-align: right;
 }
+.back {
+    display: flex;
+    align-items: center;
+}
+.back svg {
+    height: 24px;
+    display: block;
+    margin-right: 12px;
+}
 
 .inner p:not(:last-child){
    margin-bottom: 18px;

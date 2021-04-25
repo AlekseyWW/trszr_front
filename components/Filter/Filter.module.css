@@ -1,5 +1,23 @@
 .filter {
     width: 100%;
+    position: relative;
+}
+.download {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    z-index: 10;
+    margin-bottom: 10px;
+}
+
+.download svg {
+    display: block;
+    margin-left: 12px;
+    height: 20px;
+    width: auto;
 }
 .line {
     display: block;

@@ -107,7 +107,10 @@ const Filter = ({pictured, price: p, lines}) => {
     console.log({price: price ? JSON.parse(price): ''});
     return (
       <div className={css.filter}>
-        {price && <a href={process.env.api + '/storage/' + JSON.parse(price)[0].download_link} download>Скачать прайс</a>}
+        {price && <a className={css.download} href={process.env.api + '/storage/' + JSON.parse(price)[0].download_link} download>
+          <span>Скачать прайс</span>
+          <Icon name="download" />
+        </a>}
         <div className={css.line}>
           {pictures.length > 0 && (
             <SimpleSwiper centerInsufficientSlides simulateTouch={false}>
