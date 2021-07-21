@@ -47,7 +47,7 @@ const Menu = ({ in: inProp, toggleMenu, categories, cultures }) => {
     </Transition>
     <Transition in={inProp} unmountOnExit timeout={!inProp ? duration : 0}>
       {(state) => (
-        <div className={cx(css.root, transitionStyles[state])}>
+        <div className={cx(css.root, transitionStyles[state])} onClick={toggleMenu}>
           <div className={css.inner} ref={el}>
             {/* <SearchForm className={css.search} /> */}
             <ul className={cx(css.list, css.list_page)}>

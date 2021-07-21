@@ -62,6 +62,7 @@ MyApp.getInitialProps = async (appContext) => {
         settings: settingsObject,
       }
     }
+    
     return {
       ...appProps,
       isServer: !process.browser,

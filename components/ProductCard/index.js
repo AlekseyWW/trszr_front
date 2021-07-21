@@ -8,10 +8,11 @@ const ProductCard = ({ name, image, slug, category, manufacturer, loading, class
     <Link href="/cat/[category]/[product]" as={`/cat/${category}/${slug}`}>
       <a className={cx(css.card, className && className)}>
         <span className={css.media}>
-          {image ? <img
+          {image && <img
             className={css.image}
-            src={`${process.env.api}/images/products/${image}`}
-          /> : manufacturer ? <span className={css.manufacturer}>{manufacturer.name || manufacturer}</span>: null}
+            src={`${process.env.api}/storage/${image}`}
+          />}
+          {manufacturer ? <span className={css.manufacturer}>{manufacturer.name || manufacturer}</span>: null}
         </span>
         <span className={css.name}>
           <span className={css.black}>{name.split(",")[0]}</span>

@@ -45,6 +45,8 @@
     z-index: 1;
     padding: 8px;
     min-height: 72px;
+    height: 72px;
+    transition: height 0.165s;
 }
 
 .manufacturer {
@@ -58,6 +60,8 @@
     padding-top: 16px;
     border: 1px solid var(--green);
     border-radius: 32px;
+    position: absolute;
+    max-width: calc(100% - 16px);
 }
 
 .dump .image {
@@ -66,4 +70,8 @@
 }
 .dump .name {
     height: 52px;
+}
+
+.card:hover .name {
+    height: 100px;
 }

@@ -3,14 +3,14 @@
     position: relative;
 }
 .download {
-    font-size: 14px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     position: absolute;
     right: 0;
     bottom: 100%;
     z-index: 10;
-    margin-bottom: 10px;
+    margin-bottom: 32px;
 }
 
 .download svg {
@@ -137,7 +137,7 @@
 
 }
 .item_line {
-    padding: 20px 6px;
+    padding: 8px 12px;
     height: 100%;
     justify-content: center;
     width: auto;
@@ -153,15 +153,27 @@
 .item_press.item_line .title {
     transform: scale(0.9);
     transition: transform 0.175s;
-
 }
 .item_active.item_line {
     background-color: var(--yellow);
 }
 .item_active.item:after, .item_active.item:not(.item_line):after {
     opacity: 1;
+}
+.item:hover.item_line {
+    background-color: var(--yellow);
+}
+.item:hover.item:after, .item:hover.item:not(.item_line):after {
+    opacity: 0.6;
+}
+
+.item_line:hover:after {
+    opacity: 0.6;
+    background-color: var(--yellow);
 
 }
+
+
 .image {
     border-radius: 50%;
     display: block;
@@ -184,10 +196,6 @@
     line-height: 1;
     transition: transform 0.175s;
     will-change: transform;
-}
-.title_line {
-    font-size: 20px;
-
 }
 
 .image:after {
@@ -222,10 +230,6 @@
 .loading .title:after {
     transition: opacity 0.175s;
     opacity: 1;
-}
-.loading .image:after {
-    /* transition: opacity 0.175s;
-    opacity: 1; */
 }
 .loading img {
     transition: opacity 0.175s;

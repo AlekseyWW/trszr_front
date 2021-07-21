@@ -80,8 +80,8 @@
     list-style: none;
     font-size: 24px;
     text-transform: uppercase;
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding-top: 28px;
+    padding-bottom: 28px;
     padding-left: 24px;
 }
 .list_page {
@@ -122,7 +122,7 @@
 }
 .list__item_page {
     padding: 12px 32px;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 900;
     text-transform: uppercase;
 }
