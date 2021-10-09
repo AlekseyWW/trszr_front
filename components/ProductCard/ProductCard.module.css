@@ -37,6 +37,7 @@
     font-size: 20px;
 }
 .name {
+    font-size: 14px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -54,14 +55,16 @@
     justify-content: center;
     align-items: center;
     font-weight: 800;
-    font-size: 24px;
+    font-size: 14px;
     text-transform: uppercase;
-    padding: 12px;
-    padding-top: 16px;
-    border: 1px solid var(--green);
-    border-radius: 32px;
     position: absolute;
     max-width: calc(100% - 16px);
+    bottom: 12px;
+    left: 0;
+    padding: 8px;
+    opacity: 0;
+    transition: 0.165s;
+    transform: translateY(20px);
 }
 
 .dump .image {
@@ -74,4 +77,9 @@
 
 .card:hover .name {
     height: 100px;
+}
+.card:hover .manufacturer {
+    opacity: 1;
+    transform: translateY(10px);
+
 }

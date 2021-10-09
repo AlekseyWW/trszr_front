@@ -12,11 +12,12 @@ const ProductCard = ({ name, image, slug, category, manufacturer, loading, class
             className={css.image}
             src={`${process.env.api}/storage/${image}`}
           />}
-          {manufacturer ? <span className={css.manufacturer}>{manufacturer.name || manufacturer}</span>: null}
         </span>
         <span className={css.name}>
           <span className={css.black}>{name.split(",")[0]}</span>
           <span>{name.split(",")[1]}</span>
+          {manufacturer ? <span className={css.manufacturer}>{manufacturer.name || manufacturer}</span>: null}
+
         </span>
       </a>
     </Link>
