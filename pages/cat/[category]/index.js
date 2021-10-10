@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from '../../../components/Layout';
 import Filter from "../../../components/Filter";
 import ProductCard from '../../../components/ProductCard';
@@ -31,16 +31,13 @@ const Category = ({ currentCultures, cats, prods, price }) => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(prods.meta ? prods.meta.current_page : 1);
 
-  const fetchMoreProducts = useCallback(() => {
-    async function rr() {
-      const { data } = await Axios.get(
-        `${process.env.api}/api/products?${queryString.stringify(router.query)}&page=${currentPage + 1}`
-      );
-      setProducts([...products, ...data.products.data]);
-      setCurrentPage(data.current_page);
-    }
-    rr();
-  }, [currentPage]) 
+  const fetchMoreProducts = () => setCurrentPage(async current_page => {
+    const { data } = await Axios.get(
+      `${process.env.api}/api/products?${queryString.stringify(router.query)}&page=${currentPage + 1}`
+    );
+    setProducts([...products, ...data.products.data]);
+    return data.products.current_page
+  });
 
   useEffect(() => {
     if (curQuery !== router.query) {
