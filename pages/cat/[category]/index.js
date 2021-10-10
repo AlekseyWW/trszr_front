@@ -34,7 +34,7 @@ const Category = ({ currentCultures, cats, prods, price }) => {
       const { data } = await Axios.get(
         `${process.env.api}/api/products?${queryString.stringify(router.query)}&page=${currentPage + 1}`
       );
-      setProducts([...products, ...data.products.data]);
+      setProducts(products => [...products, ...data.products.data]);
       setCurrentPage(data.current_page);
   }
 
