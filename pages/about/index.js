@@ -15,6 +15,7 @@ import { Map, Placemark } from "react-yandex-maps";
 import ContactForm from '../../components/Forms/ContactForm';
 import PagesContext from '../../store';
 import ContactBlock from "../../components/ContactsBlock";
+import Link from "../../components/Link";
 
 const duration = 300;
 
@@ -32,6 +33,14 @@ const Page = ({ page, slug, partners, sertificates }) => {
   
   return (
     <Container className={css.inner}>
+      <Link
+        href={'/'}
+        as={'/'}>
+          <a className={css.back}>
+            <Icon name="back" />
+            <span>На главную</span>
+          </a>
+      </Link>
       <h1>{title}</h1>
       {description && parse(description)}
       {body && parse(body)}

@@ -132,20 +132,20 @@ const Filter = ({pictured, price: p, lines}) => {
           )}
         </div>
         <div className={cx(css.line, css.line_gray)}>
-          <div className={cx(css.inner)}>
-            {lines.length > 0 && (lines.map((item, id) => (
-              <div className={css.slide} key={item.id}>
-                <FilterItem
-                  type="cultures"
-                  isActive={isActive(item.id, "cultures")}
-                  onChange={onChange}
-                  key={`item-${id}`}
-                  {...item}
-                  link="/"
-                />
-              </div>)
-            ))}
-          </div>
+        {lines.length > 1 &&<div className={cx(css.inner)}>
+             {(lines.map((item, id) => (
+                <div className={css.slide} key={item.id}>
+                  <FilterItem
+                    type="cultures"
+                    isActive={isActive(item.id, "cultures")}
+                    onChange={onChange}
+                    key={`item-${id}`}
+                    {...item}
+                    link="/"
+                  />
+                </div>)
+              ))}
+          </div>}
         </div>
       </div>
     );

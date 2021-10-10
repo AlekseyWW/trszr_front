@@ -28,17 +28,15 @@ const transitionStyles = {
 
 
 const Page = ({ page, slug }) => {
-  const { settings } = useContext(PagesContext);
   const { title, body, children } = page;
-  console.log({children});
   return (
     <Container className={css.inner}>
       <Link
-        href={children.length ? '/' : '/[slug]'}
-        as={children.length ? "/" : '/uslugi'}>
+        href={'/'}
+        as={'/'}>
           <a className={css.back}>
             <Icon name="back" />
-            <span>Назад</span>
+            <span>На главную</span>
           </a>
       </Link>
       <h1>{title}</h1>

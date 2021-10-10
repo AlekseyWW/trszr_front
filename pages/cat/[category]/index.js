@@ -34,8 +34,9 @@ const Category = ({ currentCultures, cats, prods, price }) => {
       const { data } = await Axios.get(
         `${process.env.api}/api/products?${queryString.stringify(router.query)}&page=${currentPage + 1}`
       );
+      console.log({PRODS: data.products.data, currentPage});
       setProducts(products => [...products, ...data.products.data]);
-      setCurrentPage(data.current_page);
+      setCurrentPage(data.products.current_page);
   }
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const Category = ({ currentCultures, cats, prods, price }) => {
     }
   }, [router.query]);
 
-  console.log({cultures, prods, currentCultures}, products.length);
+  console.log({cultures, prods, currentCultures, products});
   return (
     <Container className={css.container}>
       <Filter lines={curQuery.category === 'sem' ? [] : cultures} pictured={cats || []} />
