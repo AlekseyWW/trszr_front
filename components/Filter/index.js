@@ -76,16 +76,14 @@ const Filter = ({pictured, price: p, lines}) => {
     
     const onChange = (e) => {
         const { name, value } = e.target
-        const arr = params[name] ? params[name].split(",") : [];
-        if (arr.indexOf(value) === -1) {
-            arr.push(value)
-        } else {
-            arr.splice(arr.indexOf(value), 1);
-        }
-        params[name] = arr.join(",");
+        
+        params[name] = params[name] === value ? '' : value;
+
+        const param = name === 'categories' ? { [name]: value } : params;
+
         router.push(
-            `/cat/[category]?${queryString.stringify(params)}`,
-            `/cat/${category}?${queryString.stringify(params)}`,
+            `/cat/[category]?${queryString.stringify(param)}`,
+            `/cat/${category}?${queryString.stringify(param)}`,
             { shallow: true }
         );
     }
@@ -104,7 +102,7 @@ const Filter = ({pictured, price: p, lines}) => {
         setLoading(false);
       });
     }, [query.category]);
-    console.log({price: price ? JSON.parse(price): ''});
+    
     return (
       <div className={css.filter}>
         {price && <a className={css.download} href={process.env.api + '/storage/' + JSON.parse(price)[0].download_link} download>
@@ -135,22 +133,18 @@ const Filter = ({pictured, price: p, lines}) => {
         </div>
         <div className={cx(css.line, css.line_gray)}>
           <div className={cx(css.inner)}>
-            {lines.length > 0 && (
-              <SimpleSwiper slidesPerView={6} freeMode>
-                {lines.map((item, id) => (
-                  <div key={item.id}>
-                    <FilterItem
-                      type="cultures"
-                      isActive={isActive(item.id, "cultures")}
-                      onChange={onChange}
-                      key={`item-${id}`}
-                      {...item}
-                      link="/"
-                    />
-                  </div>
-                ))}
-              </SimpleSwiper>
-            )}
+            {lines.length > 0 && (lines.map((item, id) => (
+              <div className={css.slide} key={item.id}>
+                <FilterItem
+                  type="cultures"
+                  isActive={isActive(item.id, "cultures")}
+                  onChange={onChange}
+                  key={`item-${id}`}
+                  {...item}
+                  link="/"
+                />
+              </div>)
+            ))}
           </div>
         </div>
       </div>

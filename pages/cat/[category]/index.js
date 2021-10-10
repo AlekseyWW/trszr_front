@@ -23,9 +23,10 @@ const transitionStyles = {
 };
 
 
-const Category = ({ categories, cultures, cats, prods, price }) => {
+const Category = ({ currentCultures, cats, prods, price }) => {
   const router = useRouter();
   const [products, setProducts] = useState(prods.data);
+  const [cultures, setCultures] = useState(currentCultures);
   const [curQuery, setCurQuery] = useState(router.query);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(prods.meta ? prods.meta.current_page : 1);
@@ -33,8 +34,8 @@ const Category = ({ categories, cultures, cats, prods, price }) => {
       const { data } = await Axios.get(
         `${process.env.api}/api/products?${queryString.stringify(router.query)}&page=${currentPage + 1}`
       );
-      setProducts([...products, ...data.data]);
-      setCurrentPage(data.meta.current_page);
+      setProducts([...products, ...data.products.data]);
+      setCurrentPage(data.current_page);
   }
 
   useEffect(() => {
@@ -44,19 +45,21 @@ const Category = ({ categories, cultures, cats, prods, price }) => {
         `${process.env.api}/api/products?${queryString.stringify(router.query)}`
       ).then(res => {
         const { data } = res;
-        setProducts(data.data);
+        setProducts(data.products.data);
+        setCultures(data.cultures);
         setCurQuery(router.query);
-        setCurrentPage(data.meta ? data.meta.current_page : 1);
+        setCurrentPage(data.products ? data.products.current_page : 1);
         setLoading(false);
       });
     }
   }, [router.query]);
 
+  console.log({cultures, prods, currentCultures});
   return (
     <Container className={css.container}>
       <Filter lines={curQuery.category === 'sem' ? [] : cultures} pictured={cats || []} />
       <TransitionGroup className={css.grid}>
-        {products.map((product, id) => (
+        {products && products.map((product, id) => (
           <CSSTransition
             key={product.id}
             timeout={175}
@@ -97,7 +100,7 @@ const Category = ({ categories, cultures, cats, prods, price }) => {
             <ProductCard loading/>
           </>
         )} */}
-      {prods.meta && products.length > 0 && prods.meta.total > products.length && (
+      {prods.total && products.length > 0 && prods.total > products.length && (
         <button onClick={fetchMoreProducts} className={css.more}>
           Показать ещё
         </button>
@@ -114,7 +117,8 @@ Category.getInitialProps = async({query}) => {
   return {
     cats: cats,
     price: price,
-    prods: products
+    currentCultures: products.cultures,
+    prods: products.products
   };
 };
 

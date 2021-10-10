@@ -55,6 +55,7 @@ MyApp.getInitialProps = async (appContext) => {
       settings.data.forEach(item => {
         settingsObject[item.key.split('.')[1]] = item.value;
       })
+
       globalProps = {
         categories: categories,
         cultures: cultures.data,
