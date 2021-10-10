@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Layout from '../../../components/Layout';
 import Filter from "../../../components/Filter";
 import ProductCard from '../../../components/ProductCard';
@@ -30,13 +30,17 @@ const Category = ({ currentCultures, cats, prods, price }) => {
   const [curQuery, setCurQuery] = useState(router.query);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(prods.meta ? prods.meta.current_page : 1);
-  const fetchMoreProducts = async () => {
+
+  const fetchMoreProducts = useCallback(() => {
+    async function rr() {
       const { data } = await Axios.get(
         `${process.env.api}/api/products?${queryString.stringify(router.query)}&page=${currentPage + 1}`
       );
       setProducts([...products, ...data.products.data]);
       setCurrentPage(data.current_page);
-  }
+    }
+    rr();
+  }, [currentPage]) 
 
   useEffect(() => {
     if (curQuery !== router.query) {
@@ -100,7 +104,7 @@ const Category = ({ currentCultures, cats, prods, price }) => {
             <ProductCard loading/>
           </>
         )} */}
-      {prods.total && products.length > 0 && prods.total > products.length && (
+      {products.length > 0 && prods.total > products.length && (
         <button onClick={fetchMoreProducts} className={css.more}>
           Показать ещё
         </button>
