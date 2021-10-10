@@ -30,14 +30,13 @@ const Category = ({ currentCultures, cats, prods, price }) => {
   const [curQuery, setCurQuery] = useState(router.query);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(prods.meta ? prods.meta.current_page : 1);
-
-  const fetchMoreProducts = () => setCurrentPage(async current_page => {
-    const { data } = await Axios.get(
-      `${process.env.api}/api/products?${queryString.stringify(router.query)}&page=${currentPage + 1}`
-    );
-    setProducts([...products, ...data.products.data]);
-    return data.products.current_page
-  });
+  const fetchMoreProducts = async (currentPage) => {
+      const { data } = await Axios.get(
+        `${process.env.api}/api/products?${queryString.stringify(router.query)}&page=${currentPage + 1}`
+      );
+      setProducts([...products, ...data.products.data]);
+      setCurrentPage(data.current_page);
+  }
 
   useEffect(() => {
     if (curQuery !== router.query) {
@@ -55,7 +54,7 @@ const Category = ({ currentCultures, cats, prods, price }) => {
     }
   }, [router.query]);
 
-  console.log({cultures, prods, currentCultures});
+  console.log({cultures, prods, currentCultures}, products.length);
   return (
     <Container className={css.container}>
       <Filter lines={curQuery.category === 'sem' ? [] : cultures} pictured={cats || []} />
@@ -102,7 +101,7 @@ const Category = ({ currentCultures, cats, prods, price }) => {
           </>
         )} */}
       {products.length > 0 && prods.total > products.length && (
-        <button onClick={fetchMoreProducts} className={css.more}>
+        <button onClick={() => fetchMoreProducts(currentPage)} className={css.more}>
           Показать ещё
         </button>
       )}
