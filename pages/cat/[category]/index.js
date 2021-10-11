@@ -29,7 +29,8 @@ const Category = ({ currentCultures, cats, prods, price }) => {
   const [cultures, setCultures] = useState(currentCultures);
   const [curQuery, setCurQuery] = useState(router.query);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(prods.meta ? prods.meta.current_page : 1);
+  const [currentPage, setCurrentPage] = useState(prods ? prods.current_page : 1);
+  const [total, setTotal] = useState(prods ? prods.total : 0);
   const fetchMoreProducts = async (currentPage) => {
       const { data } = await Axios.get(
         `${process.env.api}/api/products?${queryString.stringify(router.query)}&page=${currentPage + 1}`
@@ -50,12 +51,11 @@ const Category = ({ currentCultures, cats, prods, price }) => {
         setCultures(data.cultures);
         setCurQuery(router.query);
         setCurrentPage(data.products ? data.products.current_page : 1);
+        setTotal(data.products ? data.products.total : 0);
         setLoading(false);
       });
     }
   }, [router.query]);
-
-  console.log({cultures, prods, currentCultures, products});
   return (
     <Container className={css.container}>
       <Filter lines={curQuery.category === 'sem' ? [] : cultures} pictured={cats || []} />
@@ -101,7 +101,7 @@ const Category = ({ currentCultures, cats, prods, price }) => {
             <ProductCard loading/>
           </>
         )} */}
-      {products.length > 0 && prods.total > products.length && (
+      {(products.length > 0 && total > products.length && !loading) && (
         <button onClick={() => fetchMoreProducts(currentPage)} className={css.more}>
           Показать ещё
         </button>

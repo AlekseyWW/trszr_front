@@ -27,7 +27,6 @@ const transitionStyles = {
 
 
 const Search = ({ result, searchText }) => {
-  console.log({ result, searchText});
   const [activeType, setActiveType] = useState('')
   const [activeId, setActiveId] = useState('')
   const isOpen = useCallback((type, id) => {
@@ -38,7 +37,6 @@ const Search = ({ result, searchText }) => {
     setActiveType(isOpen(type, id) ? '' : type);
     setActiveId(isOpen(type, id) ? '' : id);
   }
-  console.log({result: result.manufacturers});
   return (
     <Container className={css.inner}>
       <h1>Поиск</h1>

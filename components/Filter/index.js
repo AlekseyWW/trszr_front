@@ -20,8 +20,6 @@ const SimpleSwiper = ({ children, slidesPerView, ...props }) => {
       setIsEnd(swiper.isEnd);
       setIsBeginning(swiper.isBeginning);
       swiper.on("transitionEnd", function () {
-        console.log({ swiper});
-        
         setIsEnd(swiper.isEnd);
         setIsBeginning(swiper.isBeginning);
       });
@@ -77,10 +75,10 @@ const Filter = ({pictured, price: p, lines}) => {
     const onChange = (e) => {
         const { name, value } = e.target
         
-        params[name] = params[name] === value ? '' : value;
-
-        const param = name === 'categories' ? { [name]: value } : params;
-
+        const param = name === 'categories' ? { [name]: params[name] === value ? '' : value } : {...params, [name]: params[name] === value ? '' : value};
+        if (!param[name])  {
+          delete param[name]
+        }
         router.push(
             `/cat/[category]?${queryString.stringify(param)}`,
             `/cat/${category}?${queryString.stringify(param)}`,
