@@ -105,6 +105,11 @@ a {
   color: currentColor;
 }
 
+table {
+  float: none;
+  width: 100%;
+}
+
 h1 {
     font-weight: 900;
     text-transform: uppercase;
