@@ -3,8 +3,9 @@ import cx from "classnames";
 
 import css from './ProductCard.module.css';
 
-const ProductCard = ({ name, image, slug, category, manufacturer, loading, className }) =>
-  !loading ? (
+const ProductCard = ({ name, image, slug, category, manufacturer, loading, className }) =>{
+  console.log({manufacturer});
+  return !loading ? (
     <Link href="/cat/[category]/[product]" as={`/cat/${category}/${slug}`}>
       <a className={cx(css.card, className && className)}>
         <span className={css.media}>
@@ -12,6 +13,10 @@ const ProductCard = ({ name, image, slug, category, manufacturer, loading, class
             className={css.image}
             src={`${process.env.api}/storage/${image}`}
           />}
+          {!image && manufacturer.image ? <img
+            className={css.image}
+            src={`${process.env.api}/storage/${manufacturer.image}`}
+          />: null}
         </span>
         <span className={css.name}>
           <span className={css.black}>{name.split(",")[0]}</span>
@@ -27,5 +32,5 @@ const ProductCard = ({ name, image, slug, category, manufacturer, loading, class
       <span className={css.name}></span>
     </div>
   );
-
+}
 export default ProductCard;

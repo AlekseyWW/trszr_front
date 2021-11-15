@@ -16,7 +16,7 @@
 
 .view img {
     position: relative;
-    width: 100%;
+    max-width: 100%;
 }
 .info {
     display: flex;
@@ -105,6 +105,10 @@
 .content table, .content td, .content th {
     border: 2px #808080 solid;
     border-collapse: collapse;
+}
+.content div {
+    max-width: 100%;
+    overflow: auto;
 }
 .content td {
     padding: 12px;
