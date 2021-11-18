@@ -65,6 +65,7 @@
 .block p {
     white-space: pre-line;
 }
+
 .group {
     display: flex;
     flex-direction: column;
@@ -111,6 +112,10 @@
     border-collapse: collapse;
 }
 .content div {
+    max-width: 100%;
+    overflow: auto;
+}
+.content {
     max-width: 100%;
     overflow: auto;
 }
